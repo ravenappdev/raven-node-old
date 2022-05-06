@@ -14,47 +14,23 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/EmailOverride', 'model/ProviderOverride', 'model/PushOverride', 'model/SlackOverride', 'model/SmsOverride', 'model/VoiceOverride', 'model/WebhookOverride', 'model/WhatsappOverride'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./EmailOverride'), require('./ProviderOverride'), require('./PushOverride'), require('./SlackOverride'), require('./SmsOverride'), require('./VoiceOverride'), require('./WebhookOverride'), require('./WhatsappOverride'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
-    }
-    root.RavenApi.EventOverride = factory(root.RavenApi.ApiClient, root.RavenApi.EmailOverride, root.RavenApi.ProviderOverride, root.RavenApi.PushOverride, root.RavenApi.SlackOverride, root.RavenApi.SmsOverride, root.RavenApi.VoiceOverride, root.RavenApi.WebhookOverride, root.RavenApi.WhatsappOverride);
+import {ApiClient} from '../ApiClient';
+import {EmailOverride} from './EmailOverride';
+import {ProviderOverride} from './ProviderOverride';
+import {PushOverride} from './PushOverride';
+import {SlackOverride} from './SlackOverride';
+import {SmsOverride} from './SmsOverride';
+import {VoiceOverride} from './VoiceOverride';
+import {WebhookOverride} from './WebhookOverride';
+import {WhatsappOverride} from './WhatsappOverride';
+
+export class EventOverride {
+  constructor() {
   }
-}(this, function(ApiClient, EmailOverride, ProviderOverride, PushOverride, SlackOverride, SmsOverride, VoiceOverride, WebhookOverride, WhatsappOverride) {
-  'use strict';
 
-  /**
-   * The EventOverride model module.
-   * @module model/EventOverride
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new <code>EventOverride</code>.
-   * @alias module:model/EventOverride
-   * @class
-   */
-  var exports = function() {
-  };
-
-  /**
-   * Constructs a <code>EventOverride</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/EventOverride} obj Optional instance to populate.
-   * @return {module:model/EventOverride} The populated <code>EventOverride</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
+  static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new exports();
+      obj = obj || new EventOverride();
       if (data.hasOwnProperty('email'))
         obj.email = EmailOverride.constructFromObject(data['email']);
       if (data.hasOwnProperty('sms'))
@@ -75,47 +51,86 @@
     return obj;
   }
 
-  /**
-   * @member {module:model/EmailOverride} email
-   */
-  exports.prototype.email = undefined;
+  getEmail() {
+    return this.email;
+  }
 
-  /**
-   * @member {module:model/SmsOverride} sms
-   */
-  exports.prototype.sms = undefined;
+  setEmail(email) {
+    this.email = email;
+  }
 
-  /**
-   * @member {module:model/WhatsappOverride} whatsapp
-   */
-  exports.prototype.whatsapp = undefined;
+  getSms() {
+    return this.sms;
+  }
 
-  /**
-   * @member {module:model/PushOverride} push
-   */
-  exports.prototype.push = undefined;
+  setSms(sms) {
+    this.sms = sms;
+  }
 
-  /**
-   * @member {module:model/WebhookOverride} webhook
-   */
-  exports.prototype.webhook = undefined;
+  getWhatsapp() {
+    return this.whatsapp;
+  }
 
-  /**
-   * @member {module:model/VoiceOverride} voice
-   */
-  exports.prototype.voice = undefined;
+  setWhatsapp(whatsapp) {
+    this.whatsapp = whatsapp;
+  }
 
-  /**
-   * @member {module:model/SlackOverride} slack
-   */
-  exports.prototype.slack = undefined;
+  getPush() {
+    return this.push;
+  }
 
-  /**
-   * @member {Object.<String, module:model/ProviderOverride>} providers
-   */
-  exports.prototype.providers = undefined;
+  setPush(push) {
+    this.push = push;
+  }
+
+  getWebhook() {
+    return this.webhook;
+  }
+
+  setWebhook(webhook) {
+    this.webhook = webhook;
+  }
+
+  getVoice() {
+    return this.voice;
+  }
+
+  setVoice(voice) {
+    this.voice = voice;
+  }
+
+  getSlack() {
+    return this.slack;
+  }
+
+  setSlack(slack) {
+    this.slack = slack;
+  }
+
+  getProviders() {
+    return this.providers;
+  }
+
+  setProviders(providers) {
+    this.providers = providers;
+  }
+
+}
+
+EventOverride.prototype.email = undefined;
+
+EventOverride.prototype.sms = undefined;
+
+EventOverride.prototype.whatsapp = undefined;
+
+EventOverride.prototype.push = undefined;
+
+EventOverride.prototype.webhook = undefined;
+
+EventOverride.prototype.voice = undefined;
+
+EventOverride.prototype.slack = undefined;
+
+EventOverride.prototype.providers = undefined;
 
 
-  return exports;
-
-}));

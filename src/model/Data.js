@@ -14,55 +14,19 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
-    }
-    root.RavenApi.Data = factory(root.RavenApi.ApiClient);
+import {ApiClient} from '../ApiClient';
+
+export class Data {
+  constructor() {
   }
-}(this, function(ApiClient) {
-  'use strict';
 
-  /**
-   * The Data model module.
-   * @module model/Data
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new <code>Data</code>.
-   * @alias module:model/Data
-   * @class
-   * @extends Object
-   */
-  var exports = function() {
-  };
-
-  /**
-   * Constructs a <code>Data</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Data} obj Optional instance to populate.
-   * @return {module:model/Data} The populated <code>Data</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
+  static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new exports();
+      obj = obj || new Data();
       ApiClient.constructFromObject(data, obj, 'Object');
     }
     return obj;
   }
 
-  exports.prototype.additionalProperties = new Map();
+}
 
-  return exports;
-
-}));

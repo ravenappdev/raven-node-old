@@ -14,47 +14,15 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
-    }
-    root.RavenApi.SlackProfile = factory(root.RavenApi.ApiClient);
+import {ApiClient} from '../ApiClient';
+
+export class SlackProfile {
+  constructor() {
   }
-}(this, function(ApiClient) {
-  'use strict';
 
-  /**
-   * The SlackProfile model module.
-   * @module model/SlackProfile
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new <code>SlackProfile</code>.
-   * @alias module:model/SlackProfile
-   * @class
-   */
-  var exports = function() {
-  };
-
-  /**
-   * Constructs a <code>SlackProfile</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/SlackProfile} obj Optional instance to populate.
-   * @return {module:model/SlackProfile} The populated <code>SlackProfile</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
+  static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new exports();
+      obj = obj || new SlackProfile();
       if (data.hasOwnProperty('access_token'))
         obj.accessToken = ApiClient.convertToType(data['access_token'], 'String');
       if (data.hasOwnProperty('email'))
@@ -65,22 +33,36 @@
     return obj;
   }
 
-  /**
-   * @member {String} accessToken
-   */
-  exports.prototype.accessToken = undefined;
+  getAccessToken() {
+    return this.accessToken;
+  }
 
-  /**
-   * @member {String} email
-   */
-  exports.prototype.email = undefined;
+  setAccessToken(accessToken) {
+    this.accessToken = accessToken;
+  }
 
-  /**
-   * @member {String} channelId
-   */
-  exports.prototype.channelId = undefined;
+  getEmail() {
+    return this.email;
+  }
+
+  setEmail(email) {
+    this.email = email;
+  }
+
+  getChannelId() {
+    return this.channelId;
+  }
+
+  setChannelId(channelId) {
+    this.channelId = channelId;
+  }
+
+}
+
+SlackProfile.prototype.accessToken = undefined;
+
+SlackProfile.prototype.email = undefined;
+
+SlackProfile.prototype.channelId = undefined;
 
 
-  return exports;
-
-}));

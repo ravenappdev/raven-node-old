@@ -44,7 +44,7 @@
       it('should have the property scheduledAt (base name: "scheduled_at")', function() {
         // TODO: update the code to test the property scheduledAt
         expect(instance).to.have.property('scheduledAt');
-        // expect(instance.scheduledAt).to.be(expectedValueLiteral);
+        // expect(instance.getScheduledAt()).to.be(expectedValueLiteral);
       });
 
     });

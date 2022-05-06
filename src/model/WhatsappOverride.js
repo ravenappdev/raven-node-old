@@ -14,59 +14,31 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
-    }
-    root.RavenApi.WhatsappOverride = factory(root.RavenApi.ApiClient);
+import {ApiClient} from '../ApiClient';
+
+export class WhatsappOverride {
+  constructor() {
   }
-}(this, function(ApiClient) {
-  'use strict';
 
-  /**
-   * The WhatsappOverride model module.
-   * @module model/WhatsappOverride
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new <code>WhatsappOverride</code>.
-   * @alias module:model/WhatsappOverride
-   * @class
-   */
-  var exports = function() {
-  };
-
-  /**
-   * Constructs a <code>WhatsappOverride</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/WhatsappOverride} obj Optional instance to populate.
-   * @return {module:model/WhatsappOverride} The populated <code>WhatsappOverride</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
+  static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new exports();
+      obj = obj || new WhatsappOverride();
       if (data.hasOwnProperty('scheduled_at'))
         obj.scheduledAt = ApiClient.convertToType(data['scheduled_at'], 'String');
     }
     return obj;
   }
 
-  /**
-   * @member {String} scheduledAt
-   */
-  exports.prototype.scheduledAt = undefined;
+  getScheduledAt() {
+    return this.scheduledAt;
+  }
+
+  setScheduledAt(scheduledAt) {
+    this.scheduledAt = scheduledAt;
+  }
+
+}
+
+WhatsappOverride.prototype.scheduledAt = undefined;
 
 
-  return exports;
-
-}));

@@ -14,47 +14,16 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Param'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Param'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
-    }
-    root.RavenApi.ProviderOverride = factory(root.RavenApi.ApiClient, root.RavenApi.Param);
+import {ApiClient} from '../ApiClient';
+import {Param} from './Param';
+
+export class ProviderOverride {
+  constructor() {
   }
-}(this, function(ApiClient, Param) {
-  'use strict';
 
-  /**
-   * The ProviderOverride model module.
-   * @module model/ProviderOverride
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new <code>ProviderOverride</code>.
-   * @alias module:model/ProviderOverride
-   * @class
-   */
-  var exports = function() {
-  };
-
-  /**
-   * Constructs a <code>ProviderOverride</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/ProviderOverride} obj Optional instance to populate.
-   * @return {module:model/ProviderOverride} The populated <code>ProviderOverride</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
+  static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new exports();
+      obj = obj || new ProviderOverride();
       if (data.hasOwnProperty('payload'))
         obj.payload = ApiClient.convertToType(data['payload'], {'String': Object});
       if (data.hasOwnProperty('form_params'))
@@ -67,27 +36,46 @@
     return obj;
   }
 
-  /**
-   * @member {Object.<String, Object>} payload
-   */
-  exports.prototype.payload = undefined;
+  getPayload() {
+    return this.payload;
+  }
 
-  /**
-   * @member {Array.<module:model/Param>} formParams
-   */
-  exports.prototype.formParams = undefined;
+  setPayload(payload) {
+    this.payload = payload;
+  }
 
-  /**
-   * @member {Array.<module:model/Param>} queryParams
-   */
-  exports.prototype.queryParams = undefined;
+  getFormParams() {
+    return this.formParams;
+  }
 
-  /**
-   * @member {Object.<String, String>} config
-   */
-  exports.prototype.config = undefined;
+  setFormParams(formParams) {
+    this.formParams = formParams;
+  }
+
+  getQueryParams() {
+    return this.queryParams;
+  }
+
+  setQueryParams(queryParams) {
+    this.queryParams = queryParams;
+  }
+
+  getConfig() {
+    return this.config;
+  }
+
+  setConfig(config) {
+    this.config = config;
+  }
+
+}
+
+ProviderOverride.prototype.payload = undefined;
+
+ProviderOverride.prototype.formParams = undefined;
+
+ProviderOverride.prototype.queryParams = undefined;
+
+ProviderOverride.prototype.config = undefined;
 
 
-  return exports;
-
-}));

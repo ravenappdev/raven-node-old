@@ -18,30 +18,27 @@ This API will send the event in bulk to the clients specified
 
 ### Example
 ```javascript
-var RavenApi = require('raven_api');
-var defaultClient = RavenApi.ApiClient.instance;
+import {RavenApi} from 'raven_api';
+let defaultClient = RavenApi.ApiClient.instance;
 
 // Configure API key authorization: ApiKeyAuth
-var ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
 ApiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //ApiKeyAuth.apiKeyPrefix = 'Token';
 
-var apiInstance = new RavenApi.EventApi();
+let apiInstance = new RavenApi.EventApi();
 
-var appId = "appId_example"; // String | app id of raven app
+let appId = "appId_example"; // String | app id of raven app
 
-var event = new RavenApi.SendEventBulk(); // SendEventBulk | the body for the event that has to be triggered
+let event = new RavenApi.SendEventBulk(); // SendEventBulk | the body for the event that has to be triggered
 
+apiInstance.sendBulkEvent(appId, event).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.sendBulkEvent(appId, event, callback);
 ```
 
 ### Parameters
@@ -74,33 +71,30 @@ This API will send the event to the client specified
 
 ### Example
 ```javascript
-var RavenApi = require('raven_api');
-var defaultClient = RavenApi.ApiClient.instance;
+import {RavenApi} from 'raven_api';
+let defaultClient = RavenApi.ApiClient.instance;
 
 // Configure API key authorization: ApiKeyAuth
-var ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
+let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
 ApiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //ApiKeyAuth.apiKeyPrefix = 'Token';
 
-var apiInstance = new RavenApi.EventApi();
+let apiInstance = new RavenApi.EventApi();
 
-var appId = "appId_example"; // String | app id of raven app
+let appId = "appId_example"; // String | app id of raven app
 
-var event = new RavenApi.SendEvent(); // SendEvent | the body for the event that has to be triggered
+let event = new RavenApi.SendEvent(); // SendEvent | the body for the event that has to be triggered
 
-var opts = { 
+let opts = { 
   'idempotencyKey': "idempotencyKey_example" // String | idempotency key of api
 };
+apiInstance.sendEvent(appId, event, opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.sendEvent(appId, event, opts, callback);
 ```
 
 ### Parameters

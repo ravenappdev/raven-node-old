@@ -14,59 +14,31 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
-    }
-    root.RavenApi.WebhookOverride = factory(root.RavenApi.ApiClient);
+import {ApiClient} from '../ApiClient';
+
+export class WebhookOverride {
+  constructor() {
   }
-}(this, function(ApiClient) {
-  'use strict';
 
-  /**
-   * The WebhookOverride model module.
-   * @module model/WebhookOverride
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new <code>WebhookOverride</code>.
-   * @alias module:model/WebhookOverride
-   * @class
-   */
-  var exports = function() {
-  };
-
-  /**
-   * Constructs a <code>WebhookOverride</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/WebhookOverride} obj Optional instance to populate.
-   * @return {module:model/WebhookOverride} The populated <code>WebhookOverride</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
+  static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new exports();
+      obj = obj || new WebhookOverride();
       if (data.hasOwnProperty('scheduled_at'))
         obj.scheduledAt = ApiClient.convertToType(data['scheduled_at'], 'String');
     }
     return obj;
   }
 
-  /**
-   * @member {String} scheduledAt
-   */
-  exports.prototype.scheduledAt = undefined;
+  getScheduledAt() {
+    return this.scheduledAt;
+  }
+
+  setScheduledAt(scheduledAt) {
+    this.scheduledAt = scheduledAt;
+  }
+
+}
+
+WebhookOverride.prototype.scheduledAt = undefined;
 
 
-  return exports;
-
-}));

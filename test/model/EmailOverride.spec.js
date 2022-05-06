@@ -44,31 +44,31 @@
       it('should have the property from (base name: "from")', function() {
         // TODO: update the code to test the property from
         expect(instance).to.have.property('from');
-        // expect(instance.from).to.be(expectedValueLiteral);
+        // expect(instance.getFrom()).to.be(expectedValueLiteral);
       });
 
       it('should have the property cc (base name: "cc")', function() {
         // TODO: update the code to test the property cc
         expect(instance).to.have.property('cc');
-        // expect(instance.cc).to.be(expectedValueLiteral);
+        // expect(instance.getCc()).to.be(expectedValueLiteral);
       });
 
       it('should have the property bcc (base name: "bcc")', function() {
         // TODO: update the code to test the property bcc
         expect(instance).to.have.property('bcc');
-        // expect(instance.bcc).to.be(expectedValueLiteral);
+        // expect(instance.getBcc()).to.be(expectedValueLiteral);
       });
 
       it('should have the property attachments (base name: "attachments")', function() {
         // TODO: update the code to test the property attachments
         expect(instance).to.have.property('attachments');
-        // expect(instance.attachments).to.be(expectedValueLiteral);
+        // expect(instance.getAttachments()).to.be(expectedValueLiteral);
       });
 
       it('should have the property scheduledAt (base name: "scheduled_at")', function() {
         // TODO: update the code to test the property scheduledAt
         expect(instance).to.have.property('scheduledAt');
-        // expect(instance.scheduledAt).to.be(expectedValueLiteral);
+        // expect(instance.getScheduledAt()).to.be(expectedValueLiteral);
       });
 
     });

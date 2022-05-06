@@ -14,58 +14,23 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/ErrorResponse', 'model/Response', 'model/SendEvent', 'model/SendEventBulk', 'model/SuccessResponse'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/ErrorResponse'), require('../model/Response'), require('../model/SendEvent'), require('../model/SendEventBulk'), require('../model/SuccessResponse'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
+import {ApiClient} from "../ApiClient";
+import {ErrorResponse} from '../model/ErrorResponse';
+import {Response} from '../model/Response';
+import {SendEvent} from '../model/SendEvent';
+import {SendEventBulk} from '../model/SendEventBulk';
+import {SuccessResponse} from '../model/SuccessResponse';
+
+
+export class EventApi {
+
+    
+    constructor(apiClient) {
+        this.apiClient = apiClient || ApiClient.instance;
     }
-    root.RavenApi.EventApi = factory(root.RavenApi.ApiClient, root.RavenApi.ErrorResponse, root.RavenApi.Response, root.RavenApi.SendEvent, root.RavenApi.SendEventBulk, root.RavenApi.SuccessResponse);
-  }
-}(this, function(ApiClient, ErrorResponse, Response, SendEvent, SendEventBulk, SuccessResponse) {
-  'use strict';
 
-  /**
-   * Event service.
-   * @module api/EventApi
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new EventApi. 
-   * @alias module:api/EventApi
-   * @class
-   * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
-   * default to {@link module:ApiClient#instance} if unspecified.
-   */
-  var exports = function(apiClient) {
-    this.apiClient = apiClient || ApiClient.instance;
-
-
-    /**
-     * Callback function to receive the result of the sendBulkEvent operation.
-     * @callback module:api/EventApi~sendBulkEventCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/SuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * sends the event in bulk to all the clients specified
-     * This API will send the event in bulk to the clients specified
-     * @param {String} appId app id of raven app
-     * @param {module:model/SendEventBulk} event the body for the event that has to be triggered
-     * @param {module:api/EventApi~sendBulkEventCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/SuccessResponse}
-     */
-    this.sendBulkEvent = function(appId, event, callback) {
-      var postBody = event;
+    sendBulkEventWithHttpInfo(appId, event) {
+      let postBody = event;
 
       // verify the required parameter 'appId' is set
       if (appId === undefined || appId === null) {
@@ -78,51 +43,36 @@
       }
 
 
-      var pathParams = {
+      let pathParams = {
         'app_id': appId
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var collectionQueryParams = {
+      let headerParams = {
       };
-      var headerParams = {
-      };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = ['ApiKeyAuth'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = SuccessResponse;
+      let authNames = ['ApiKeyAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = SuccessResponse;
 
       return this.apiClient.callApi(
         '/v1/apps/{app_id}/events/bulk_send', 'POST',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType
       );
     }
-
-    /**
-     * Callback function to receive the result of the sendEvent operation.
-     * @callback module:api/EventApi~sendEventCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/Response} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * sends the event to the client specified
-     * This API will send the event to the client specified
-     * @param {String} appId app id of raven app
-     * @param {module:model/SendEvent} event the body for the event that has to be triggered
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.idempotencyKey idempotency key of api
-     * @param {module:api/EventApi~sendEventCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/Response}
-     */
-    this.sendEvent = function(appId, event, opts, callback) {
+    sendBulkEvent(appId, event) {
+      return this.sendBulkEventWithHttpInfo(appId, event)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+    sendEventWithHttpInfo(appId, event, opts) {
       opts = opts || {};
-      var postBody = event;
+      let postBody = event;
 
       // verify the required parameter 'appId' is set
       if (appId === undefined || appId === null) {
@@ -135,31 +85,34 @@
       }
 
 
-      var pathParams = {
+      let pathParams = {
         'app_id': appId
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
+      let headerParams = {
         'Idempotency-Key': opts['idempotencyKey']
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = ['ApiKeyAuth'];
-      var contentTypes = ['application/json'];
-      var accepts = ['application/json'];
-      var returnType = Response;
+      let authNames = ['ApiKeyAuth'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = Response;
 
       return this.apiClient.callApi(
         '/v1/apps/{app_id}/events/send', 'POST',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType
       );
     }
-  };
+    sendEvent(appId, event, opts) {
+      return this.sendEventWithHttpInfo(appId, event, opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
 
-  return exports;
-}));
+
+}

@@ -14,51 +14,17 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
-    }
-    root.RavenApi.SendEventBulk = factory(root.RavenApi.ApiClient);
-  }
-}(this, function(ApiClient) {
-  'use strict';
+import {ApiClient} from '../ApiClient';
 
-  /**
-   * The SendEventBulk model module.
-   * @module model/SendEventBulk
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new <code>SendEventBulk</code>.
-   * @alias module:model/SendEventBulk
-   * @class
-   * @param event {String} 
-   * @param batch {Array.<Object>} 
-   */
-  var exports = function(event, batch) {
+export class SendEventBulk {
+  constructor(event, batch) {
     this.event = event;
     this.batch = batch;
-  };
+  }
 
-  /**
-   * Constructs a <code>SendEventBulk</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/SendEventBulk} obj Optional instance to populate.
-   * @return {module:model/SendEventBulk} The populated <code>SendEventBulk</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
+  static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new exports();
+      obj = obj || new SendEventBulk();
       if (data.hasOwnProperty('event'))
         obj.event = ApiClient.convertToType(data['event'], 'String');
       if (data.hasOwnProperty('batch'))
@@ -67,17 +33,26 @@
     return obj;
   }
 
-  /**
-   * @member {String} event
-   */
-  exports.prototype.event = undefined;
+  getEvent() {
+    return this.event;
+  }
 
-  /**
-   * @member {Array.<Object>} batch
-   */
-  exports.prototype.batch = undefined;
+  setEvent(event) {
+    this.event = event;
+  }
+
+  getBatch() {
+    return this.batch;
+  }
+
+  setBatch(batch) {
+    this.batch = batch;
+  }
+
+}
+
+SendEventBulk.prototype.event = undefined;
+
+SendEventBulk.prototype.batch = undefined;
 
 
-  return exports;
-
-}));

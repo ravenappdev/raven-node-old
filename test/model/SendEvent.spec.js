@@ -44,31 +44,31 @@
       it('should have the property event (base name: "event")', function() {
         // TODO: update the code to test the property event
         expect(instance).to.have.property('event');
-        // expect(instance.event).to.be(expectedValueLiteral);
+        // expect(instance.getEvent()).to.be(expectedValueLiteral);
       });
 
       it('should have the property user (base name: "user")', function() {
         // TODO: update the code to test the property user
         expect(instance).to.have.property('user');
-        // expect(instance.user).to.be(expectedValueLiteral);
+        // expect(instance.getUser()).to.be(expectedValueLiteral);
       });
 
       it('should have the property data (base name: "data")', function() {
         // TODO: update the code to test the property data
         expect(instance).to.have.property('data');
-        // expect(instance.data).to.be(expectedValueLiteral);
+        // expect(instance.getData()).to.be(expectedValueLiteral);
       });
 
       it('should have the property scheduledAt (base name: "scheduled_at")', function() {
         // TODO: update the code to test the property scheduledAt
         expect(instance).to.have.property('scheduledAt');
-        // expect(instance.scheduledAt).to.be(expectedValueLiteral);
+        // expect(instance.getScheduledAt()).to.be(expectedValueLiteral);
       });
 
       it('should have the property override (base name: "override")', function() {
         // TODO: update the code to test the property override
         expect(instance).to.have.property('override');
-        // expect(instance.override).to.be(expectedValueLiteral);
+        // expect(instance.getOverride()).to.be(expectedValueLiteral);
       });
 
     });

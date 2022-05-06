@@ -14,51 +14,20 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Data', 'model/EventOverride', 'model/User'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Data'), require('./EventOverride'), require('./User'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
-    }
-    root.RavenApi.SendEvent = factory(root.RavenApi.ApiClient, root.RavenApi.Data, root.RavenApi.EventOverride, root.RavenApi.User);
-  }
-}(this, function(ApiClient, Data, EventOverride, User) {
-  'use strict';
+import {ApiClient} from '../ApiClient';
+import {Data} from './Data';
+import {EventOverride} from './EventOverride';
+import {User} from './User';
 
-  /**
-   * The SendEvent model module.
-   * @module model/SendEvent
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new <code>SendEvent</code>.
-   * @alias module:model/SendEvent
-   * @class
-   * @param event {String} 
-   * @param user {module:model/User} 
-   */
-  var exports = function(event, user) {
+export class SendEvent {
+  constructor(event, user) {
     this.event = event;
     this.user = user;
-  };
+  }
 
-  /**
-   * Constructs a <code>SendEvent</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/SendEvent} obj Optional instance to populate.
-   * @return {module:model/SendEvent} The populated <code>SendEvent</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
+  static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new exports();
+      obj = obj || new SendEvent();
       if (data.hasOwnProperty('event'))
         obj.event = ApiClient.convertToType(data['event'], 'String');
       if (data.hasOwnProperty('user'))
@@ -73,32 +42,56 @@
     return obj;
   }
 
-  /**
-   * @member {String} event
-   */
-  exports.prototype.event = undefined;
+  getEvent() {
+    return this.event;
+  }
 
-  /**
-   * @member {module:model/User} user
-   */
-  exports.prototype.user = undefined;
+  setEvent(event) {
+    this.event = event;
+  }
 
-  /**
-   * @member {module:model/Data} data
-   */
-  exports.prototype.data = undefined;
+  getUser() {
+    return this.user;
+  }
 
-  /**
-   * @member {String} scheduledAt
-   */
-  exports.prototype.scheduledAt = undefined;
+  setUser(user) {
+    this.user = user;
+  }
 
-  /**
-   * @member {module:model/EventOverride} override
-   */
-  exports.prototype.override = undefined;
+  getData() {
+    return this.data;
+  }
+
+  setData(data) {
+    this.data = data;
+  }
+
+  getScheduledAt() {
+    return this.scheduledAt;
+  }
+
+  setScheduledAt(scheduledAt) {
+    this.scheduledAt = scheduledAt;
+  }
+
+  getOverride() {
+    return this.override;
+  }
+
+  setOverride(override) {
+    this.override = override;
+  }
+
+}
+
+SendEvent.prototype.event = undefined;
+
+SendEvent.prototype.user = undefined;
+
+SendEvent.prototype.data = undefined;
+
+SendEvent.prototype.scheduledAt = undefined;
+
+SendEvent.prototype.override = undefined;
 
 
-  return exports;
-
-}));

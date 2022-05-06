@@ -14,47 +14,17 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Attachments', 'model/EmailRecipient'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Attachments'), require('./EmailRecipient'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
-    }
-    root.RavenApi.EmailOverride = factory(root.RavenApi.ApiClient, root.RavenApi.Attachments, root.RavenApi.EmailRecipient);
+import {ApiClient} from '../ApiClient';
+import {Attachments} from './Attachments';
+import {EmailRecipient} from './EmailRecipient';
+
+export class EmailOverride {
+  constructor() {
   }
-}(this, function(ApiClient, Attachments, EmailRecipient) {
-  'use strict';
 
-  /**
-   * The EmailOverride model module.
-   * @module model/EmailOverride
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new <code>EmailOverride</code>.
-   * @alias module:model/EmailOverride
-   * @class
-   */
-  var exports = function() {
-  };
-
-  /**
-   * Constructs a <code>EmailOverride</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/EmailOverride} obj Optional instance to populate.
-   * @return {module:model/EmailOverride} The populated <code>EmailOverride</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
+  static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new exports();
+      obj = obj || new EmailOverride();
       if (data.hasOwnProperty('from'))
         obj.from = EmailRecipient.constructFromObject(data['from']);
       if (data.hasOwnProperty('cc'))
@@ -69,32 +39,56 @@
     return obj;
   }
 
-  /**
-   * @member {module:model/EmailRecipient} from
-   */
-  exports.prototype.from = undefined;
+  getFrom() {
+    return this.from;
+  }
 
-  /**
-   * @member {Array.<module:model/EmailRecipient>} cc
-   */
-  exports.prototype.cc = undefined;
+  setFrom(from) {
+    this.from = from;
+  }
 
-  /**
-   * @member {Array.<module:model/EmailRecipient>} bcc
-   */
-  exports.prototype.bcc = undefined;
+  getCc() {
+    return this.cc;
+  }
 
-  /**
-   * @member {module:model/Attachments} attachments
-   */
-  exports.prototype.attachments = undefined;
+  setCc(cc) {
+    this.cc = cc;
+  }
 
-  /**
-   * @member {String} scheduledAt
-   */
-  exports.prototype.scheduledAt = undefined;
+  getBcc() {
+    return this.bcc;
+  }
+
+  setBcc(bcc) {
+    this.bcc = bcc;
+  }
+
+  getAttachments() {
+    return this.attachments;
+  }
+
+  setAttachments(attachments) {
+    this.attachments = attachments;
+  }
+
+  getScheduledAt() {
+    return this.scheduledAt;
+  }
+
+  setScheduledAt(scheduledAt) {
+    this.scheduledAt = scheduledAt;
+  }
+
+}
+
+EmailOverride.prototype.from = undefined;
+
+EmailOverride.prototype.cc = undefined;
+
+EmailOverride.prototype.bcc = undefined;
+
+EmailOverride.prototype.attachments = undefined;
+
+EmailOverride.prototype.scheduledAt = undefined;
 
 
-  return exports;
-
-}));

@@ -44,25 +44,25 @@
       it('should have the property payload (base name: "payload")', function() {
         // TODO: update the code to test the property payload
         expect(instance).to.have.property('payload');
-        // expect(instance.payload).to.be(expectedValueLiteral);
+        // expect(instance.getPayload()).to.be(expectedValueLiteral);
       });
 
       it('should have the property formParams (base name: "form_params")', function() {
         // TODO: update the code to test the property formParams
         expect(instance).to.have.property('formParams');
-        // expect(instance.formParams).to.be(expectedValueLiteral);
+        // expect(instance.getFormParams()).to.be(expectedValueLiteral);
       });
 
       it('should have the property queryParams (base name: "query_params")', function() {
         // TODO: update the code to test the property queryParams
         expect(instance).to.have.property('queryParams');
-        // expect(instance.queryParams).to.be(expectedValueLiteral);
+        // expect(instance.getQueryParams()).to.be(expectedValueLiteral);
       });
 
       it('should have the property config (base name: "config")', function() {
         // TODO: update the code to test the property config
         expect(instance).to.have.property('config');
-        // expect(instance.config).to.be(expectedValueLiteral);
+        // expect(instance.getConfig()).to.be(expectedValueLiteral);
       });
 
     });

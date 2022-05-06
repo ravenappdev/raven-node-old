@@ -44,13 +44,13 @@
       it('should have the property name (base name: "name")', function() {
         // TODO: update the code to test the property name
         expect(instance).to.have.property('name');
-        // expect(instance.name).to.be(expectedValueLiteral);
+        // expect(instance.getName()).to.be(expectedValueLiteral);
       });
 
       it('should have the property value (base name: "value")', function() {
         // TODO: update the code to test the property value
         expect(instance).to.have.property('value');
-        // expect(instance.value).to.be(expectedValueLiteral);
+        // expect(instance.getValue()).to.be(expectedValueLiteral);
       });
 
     });

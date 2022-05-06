@@ -15,20 +15,35 @@
  */
 
 (function(root, factory) {
+  var testDataFile = process.env.TEST_DATA_FILE
+    ? process.env.TEST_DATA_FILE
+    : '/tmp/codegen-6367828982500657206/test/test-data.json';
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', 'json-pointer', '../assert-equals', '../../src/index', testDataFile], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('json-pointer'), require('../assert-equals'), require('../../src/index'), require(testDataFile));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.RavenApi);
+    // TODO: load browser test data from file. Maybe via FileSystem (Mozilla, chrome.fileSystem)?
+    var testData = null;
+    factory(root.expect, root.JsonPointer, root.assertEquals, root.RavenApi, testData);
   }
-}(this, function(expect, RavenApi) {
+}(this, function(expect, pointer, assertEquals, RavenApi, testData) {
   'use strict';
 
   var instance;
+  var testDataCache;
+
+  function getTestData(pointer) {
+    return testDataCache.get('/EventApi' + pointer);
+  }
+
+  before(function() {
+    testDataCache = pointer(testData);
+  });
+
 
   beforeEach(function() {
     instance = new RavenApi.EventApi();
@@ -38,113 +53,34 @@
     describe('EventApi', function() {
       describe('sendBulkEvent', function() {
         it('should call sendBulkEvent successfully', function(done) {
-          // TODO: uncomment, update parameter values for sendBulkEvent call and complete the assertions
-          /*
-          var appId = "appId_example";
-          var event = new RavenApi.SendEventBulk();
-          event.event = "sample_event_1";
-          event.batch = [];
+          var appId = getTestData('/sendBulkEvent/appId');
+          var event = getTestData('/sendBulkEvent/event');
 
-          instance.sendBulkEvent(appId, event, function(error, data, response) {
-            if (error) {
-              done(error);
-              return;
-            }
-            // TODO: update response assertions
-            expect(data).to.be.a(RavenApi.SuccessResponse);
-            expect(data.success).to.be.a('boolean');
-            expect(data.success).to.be(true);
-            expect(data.id).to.be.a('string');
-            expect(data.id).to.be("1d1ed73c-96e6-4aa3-abc2-2e9a926f773a");
+          instance.sendBulkEvent(appId, event).then(function(data) {
+            let expected = getTestData('/sendBulkEvent/response');
+            assertEquals(expected, data);
 
             done();
+          }, function(error) {
+            done(error);
           });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
         });
       });
       describe('sendEvent', function() {
         it('should call sendEvent successfully', function(done) {
-          // TODO: uncomment, update parameter values for sendEvent call and complete the assertions
-          /*
-          var appId = "appId_example";
-          var event = new RavenApi.SendEvent();
-          event.event = "sample_event_1";
-          event.user = new RavenApi.User();
-          event.user.userId = "raven user-id";
-          event.user.mobile = "+919876543210";
-          event.user.email = "";
-          event.user.whatsappMobile = "+919876543210";
-          event.user.onesignalExternalId = "onesignal external user-id";
-          event.user.fcmTokens = ["fcm_token1","fcm_token2"];
-          event.user.iosTokens = ["ios_token1","ios_token2"];
-          event.user.fcmTopic = ["topic1","topic2"];
-          event.user.fcmDeviceGroup = ["grp1","grp2"];
-          event.user.slack = ;
-          event.user.onesignalPlayerIds = ["id1","id2"];
-          event.data = new RavenApi.Data();
-          event.scheduledAt = "";
-          event.override = new RavenApi.EventOverride();
-          event.override.email = new RavenApi.EmailOverride();
-          event.override.email.from = new RavenApi.EmailRecipient();
-          event.override.email.from.name = "";
-          event.override.email.from.address = "";
-          event.override.email.cc = [new RavenApi.EmailRecipient()];
-          event.override.email.cc[0].name = "";
-          event.override.email.cc[0].address = "";
-          event.override.email.bcc = [new RavenApi.EmailRecipient()];
-          event.override.email.bcc[0].name = "";
-          event.override.email.bcc[0].address = "";
-          event.override.email.attachments = new RavenApi.Attachments();
-          event.override.email.attachments.filename = "";
-          event.override.email.attachments.content = "";
-          event.override.email.attachments.url = "";
-          event.override.email.scheduledAt = "";
-          event.override.sms = new RavenApi.SmsOverride();
-          event.override.sms.sender = "";
-          event.override.sms.scheduledAt = "";
-          event.override.whatsapp = new RavenApi.WhatsappOverride();
-          event.override.whatsapp.scheduledAt = "";
-          event.override.push = new RavenApi.PushOverride();
-          event.override.push.scheduledAt = "";
-          event.override.webhook = new RavenApi.WebhookOverride();
-          event.override.webhook.scheduledAt = "";
-          event.override.voice = new RavenApi.VoiceOverride();
-          event.override.voice.scheduledAt = "";
-          event.override.slack = new RavenApi.SlackOverride();
-          event.override.slack.scheduledAt = "";
-          event.override.providers = {key: new RavenApi.ProviderOverride()}new RavenApi.ProviderOverride();
-          event.override.providers.key.payload = {key: };
-          event.override.providers.key.formParams = [new RavenApi.Param()];
-          event.override.providers.key.formParams[0].name = "";
-          event.override.providers.key.formParams[0].value = "";
-          event.override.providers.key.queryParams = [new RavenApi.Param()];
-          event.override.providers.key.queryParams[0].name = "";
-          event.override.providers.key.queryParams[0].value = "";
-          event.override.providers.key.config = {key: ""};
+          var appId = getTestData('/sendEvent/appId');
+          var event = getTestData('/sendEvent/event');
           var opts = {};
-          opts.idempotencyKey = "idempotencyKey_example";
+          opts.idempotencyKey = getTestData('/sendEvent/idempotencyKey');
 
-          instance.sendEvent(appId, event, opts, function(error, data, response) {
-            if (error) {
-              done(error);
-              return;
-            }
-            // TODO: update response assertions
-            expect(data).to.be.a(RavenApi.Response);
-            expect(data.success).to.be.a('boolean');
-            expect(data.success).to.be(true);
-            expect(data.id).to.be.a('string');
-            expect(data.id).to.be("1d1ed73c-96e6-4aa3-abc2-2e9a926f773a");
-            expect(data.error).to.be.a('string');
-            expect(data.error).to.be("event not found");
+          instance.sendEvent(appId, event, opts).then(function(data) {
+            let expected = getTestData('/sendEvent/response');
+            assertEquals(expected, data);
 
             done();
+          }, function(error) {
+            done(error);
           });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
         });
       });
     });

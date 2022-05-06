@@ -14,47 +14,15 @@
  *
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.RavenApi) {
-      root.RavenApi = {};
-    }
-    root.RavenApi.SmsOverride = factory(root.RavenApi.ApiClient);
+import {ApiClient} from '../ApiClient';
+
+export class SmsOverride {
+  constructor() {
   }
-}(this, function(ApiClient) {
-  'use strict';
 
-  /**
-   * The SmsOverride model module.
-   * @module model/SmsOverride
-   * @version 1.0.0
-   */
-
-  /**
-   * Constructs a new <code>SmsOverride</code>.
-   * @alias module:model/SmsOverride
-   * @class
-   */
-  var exports = function() {
-  };
-
-  /**
-   * Constructs a <code>SmsOverride</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/SmsOverride} obj Optional instance to populate.
-   * @return {module:model/SmsOverride} The populated <code>SmsOverride</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
+  static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new exports();
+      obj = obj || new SmsOverride();
       if (data.hasOwnProperty('sender'))
         obj.sender = ApiClient.convertToType(data['sender'], 'String');
       if (data.hasOwnProperty('scheduled_at'))
@@ -63,17 +31,26 @@
     return obj;
   }
 
-  /**
-   * @member {String} sender
-   */
-  exports.prototype.sender = undefined;
+  getSender() {
+    return this.sender;
+  }
 
-  /**
-   * @member {String} scheduledAt
-   */
-  exports.prototype.scheduledAt = undefined;
+  setSender(sender) {
+    this.sender = sender;
+  }
+
+  getScheduledAt() {
+    return this.scheduledAt;
+  }
+
+  setScheduledAt(scheduledAt) {
+    this.scheduledAt = scheduledAt;
+  }
+
+}
+
+SmsOverride.prototype.sender = undefined;
+
+SmsOverride.prototype.scheduledAt = undefined;
 
 
-  return exports;
-
-}));

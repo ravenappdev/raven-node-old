@@ -44,67 +44,67 @@
       it('should have the property userId (base name: "user_id")', function() {
         // TODO: update the code to test the property userId
         expect(instance).to.have.property('userId');
-        // expect(instance.userId).to.be(expectedValueLiteral);
+        // expect(instance.getUserId()).to.be(expectedValueLiteral);
       });
 
       it('should have the property mobile (base name: "mobile")', function() {
         // TODO: update the code to test the property mobile
         expect(instance).to.have.property('mobile');
-        // expect(instance.mobile).to.be(expectedValueLiteral);
+        // expect(instance.getMobile()).to.be(expectedValueLiteral);
       });
 
       it('should have the property email (base name: "email")', function() {
         // TODO: update the code to test the property email
         expect(instance).to.have.property('email');
-        // expect(instance.email).to.be(expectedValueLiteral);
+        // expect(instance.getEmail()).to.be(expectedValueLiteral);
       });
 
       it('should have the property whatsappMobile (base name: "whatsapp_mobile")', function() {
         // TODO: update the code to test the property whatsappMobile
         expect(instance).to.have.property('whatsappMobile');
-        // expect(instance.whatsappMobile).to.be(expectedValueLiteral);
+        // expect(instance.getWhatsappMobile()).to.be(expectedValueLiteral);
       });
 
       it('should have the property onesignalExternalId (base name: "onesignal_external_id")', function() {
         // TODO: update the code to test the property onesignalExternalId
         expect(instance).to.have.property('onesignalExternalId');
-        // expect(instance.onesignalExternalId).to.be(expectedValueLiteral);
+        // expect(instance.getOnesignalExternalId()).to.be(expectedValueLiteral);
       });
 
       it('should have the property fcmTokens (base name: "fcm_tokens")', function() {
         // TODO: update the code to test the property fcmTokens
         expect(instance).to.have.property('fcmTokens');
-        // expect(instance.fcmTokens).to.be(expectedValueLiteral);
+        // expect(instance.getFcmTokens()).to.be(expectedValueLiteral);
       });
 
       it('should have the property iosTokens (base name: "ios_tokens")', function() {
         // TODO: update the code to test the property iosTokens
         expect(instance).to.have.property('iosTokens');
-        // expect(instance.iosTokens).to.be(expectedValueLiteral);
+        // expect(instance.getIosTokens()).to.be(expectedValueLiteral);
       });
 
       it('should have the property fcmTopic (base name: "fcm_topic")', function() {
         // TODO: update the code to test the property fcmTopic
         expect(instance).to.have.property('fcmTopic');
-        // expect(instance.fcmTopic).to.be(expectedValueLiteral);
+        // expect(instance.getFcmTopic()).to.be(expectedValueLiteral);
       });
 
       it('should have the property fcmDeviceGroup (base name: "fcm_device_group")', function() {
         // TODO: update the code to test the property fcmDeviceGroup
         expect(instance).to.have.property('fcmDeviceGroup');
-        // expect(instance.fcmDeviceGroup).to.be(expectedValueLiteral);
+        // expect(instance.getFcmDeviceGroup()).to.be(expectedValueLiteral);
       });
 
       it('should have the property slack (base name: "slack")', function() {
         // TODO: update the code to test the property slack
         expect(instance).to.have.property('slack');
-        // expect(instance.slack).to.be(expectedValueLiteral);
+        // expect(instance.getSlack()).to.be(expectedValueLiteral);
       });
 
       it('should have the property onesignalPlayerIds (base name: "onesignal_player_ids")', function() {
         // TODO: update the code to test the property onesignalPlayerIds
         expect(instance).to.have.property('onesignalPlayerIds');
-        // expect(instance.onesignalPlayerIds).to.be(expectedValueLiteral);
+        // expect(instance.getOnesignalPlayerIds()).to.be(expectedValueLiteral);
       });
 
     });

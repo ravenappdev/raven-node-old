@@ -44,13 +44,13 @@
       it('should have the property event (base name: "event")', function() {
         // TODO: update the code to test the property event
         expect(instance).to.have.property('event');
-        // expect(instance.event).to.be(expectedValueLiteral);
+        // expect(instance.getEvent()).to.be(expectedValueLiteral);
       });
 
       it('should have the property batch (base name: "batch")', function() {
         // TODO: update the code to test the property batch
         expect(instance).to.have.property('batch');
-        // expect(instance.batch).to.be(expectedValueLiteral);
+        // expect(instance.getBatch()).to.be(expectedValueLiteral);
       });
 
     });

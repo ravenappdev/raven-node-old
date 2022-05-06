@@ -44,19 +44,19 @@
       it('should have the property accessToken (base name: "access_token")', function() {
         // TODO: update the code to test the property accessToken
         expect(instance).to.have.property('accessToken');
-        // expect(instance.accessToken).to.be(expectedValueLiteral);
+        // expect(instance.getAccessToken()).to.be(expectedValueLiteral);
       });
 
       it('should have the property email (base name: "email")', function() {
         // TODO: update the code to test the property email
         expect(instance).to.have.property('email');
-        // expect(instance.email).to.be(expectedValueLiteral);
+        // expect(instance.getEmail()).to.be(expectedValueLiteral);
       });
 
       it('should have the property channelId (base name: "channel_id")', function() {
         // TODO: update the code to test the property channelId
         expect(instance).to.have.property('channelId');
-        // expect(instance.channelId).to.be(expectedValueLiteral);
+        // expect(instance.getChannelId()).to.be(expectedValueLiteral);
       });
 
     });

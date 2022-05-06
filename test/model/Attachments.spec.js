@@ -44,19 +44,19 @@
       it('should have the property filename (base name: "filename")', function() {
         // TODO: update the code to test the property filename
         expect(instance).to.have.property('filename');
-        // expect(instance.filename).to.be(expectedValueLiteral);
+        // expect(instance.getFilename()).to.be(expectedValueLiteral);
       });
 
       it('should have the property content (base name: "content")', function() {
         // TODO: update the code to test the property content
         expect(instance).to.have.property('content');
-        // expect(instance.content).to.be(expectedValueLiteral);
+        // expect(instance.getContent()).to.be(expectedValueLiteral);
       });
 
       it('should have the property url (base name: "url")', function() {
         // TODO: update the code to test the property url
         expect(instance).to.have.property('url');
-        // expect(instance.url).to.be(expectedValueLiteral);
+        // expect(instance.getUrl()).to.be(expectedValueLiteral);
       });
 
     });

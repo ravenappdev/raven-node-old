@@ -44,49 +44,49 @@
       it('should have the property email (base name: "email")', function() {
         // TODO: update the code to test the property email
         expect(instance).to.have.property('email');
-        // expect(instance.email).to.be(expectedValueLiteral);
+        // expect(instance.getEmail()).to.be(expectedValueLiteral);
       });
 
       it('should have the property sms (base name: "sms")', function() {
         // TODO: update the code to test the property sms
         expect(instance).to.have.property('sms');
-        // expect(instance.sms).to.be(expectedValueLiteral);
+        // expect(instance.getSms()).to.be(expectedValueLiteral);
       });
 
       it('should have the property whatsapp (base name: "whatsapp")', function() {
         // TODO: update the code to test the property whatsapp
         expect(instance).to.have.property('whatsapp');
-        // expect(instance.whatsapp).to.be(expectedValueLiteral);
+        // expect(instance.getWhatsapp()).to.be(expectedValueLiteral);
       });
 
       it('should have the property push (base name: "push")', function() {
         // TODO: update the code to test the property push
         expect(instance).to.have.property('push');
-        // expect(instance.push).to.be(expectedValueLiteral);
+        // expect(instance.getPush()).to.be(expectedValueLiteral);
       });
 
       it('should have the property webhook (base name: "webhook")', function() {
         // TODO: update the code to test the property webhook
         expect(instance).to.have.property('webhook');
-        // expect(instance.webhook).to.be(expectedValueLiteral);
+        // expect(instance.getWebhook()).to.be(expectedValueLiteral);
       });
 
       it('should have the property voice (base name: "voice")', function() {
         // TODO: update the code to test the property voice
         expect(instance).to.have.property('voice');
-        // expect(instance.voice).to.be(expectedValueLiteral);
+        // expect(instance.getVoice()).to.be(expectedValueLiteral);
       });
 
       it('should have the property slack (base name: "slack")', function() {
         // TODO: update the code to test the property slack
         expect(instance).to.have.property('slack');
-        // expect(instance.slack).to.be(expectedValueLiteral);
+        // expect(instance.getSlack()).to.be(expectedValueLiteral);
       });
 
       it('should have the property providers (base name: "providers")', function() {
         // TODO: update the code to test the property providers
         expect(instance).to.have.property('providers');
-        // expect(instance.providers).to.be(expectedValueLiteral);
+        // expect(instance.getProviders()).to.be(expectedValueLiteral);
       });
 
     });
