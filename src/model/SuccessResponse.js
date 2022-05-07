@@ -14,19 +14,18 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class SuccessResponse {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new SuccessResponse();
-      if (data.hasOwnProperty('success'))
-        obj.success = ApiClient.convertToType(data['success'], 'Boolean');
-      if (data.hasOwnProperty('id'))
-        obj.id = ApiClient.convertToType(data['id'], 'String');
+      if (data.hasOwnProperty("success"))
+        obj.success = RavenApiClient.convertToType(data["success"], "Boolean");
+      if (data.hasOwnProperty("id"))
+        obj.id = RavenApiClient.convertToType(data["id"], "String");
     }
     return obj;
   }
@@ -46,11 +45,8 @@ export class SuccessResponse {
   setId(id) {
     this.id = id;
   }
-
 }
 
 SuccessResponse.prototype.success = undefined;
 
 SuccessResponse.prototype.id = undefined;
-
-

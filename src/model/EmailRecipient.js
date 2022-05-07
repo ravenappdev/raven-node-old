@@ -14,19 +14,18 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class EmailRecipient {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new EmailRecipient();
-      if (data.hasOwnProperty('name'))
-        obj.name = ApiClient.convertToType(data['name'], 'String');
-      if (data.hasOwnProperty('address'))
-        obj.address = ApiClient.convertToType(data['address'], 'String');
+      if (data.hasOwnProperty("name"))
+        obj.name = RavenApiClient.convertToType(data["name"], "String");
+      if (data.hasOwnProperty("address"))
+        obj.address = RavenApiClient.convertToType(data["address"], "String");
     }
     return obj;
   }
@@ -46,11 +45,8 @@ export class EmailRecipient {
   setAddress(address) {
     this.address = address;
   }
-
 }
 
 EmailRecipient.prototype.name = undefined;
 
 EmailRecipient.prototype.address = undefined;
-
-

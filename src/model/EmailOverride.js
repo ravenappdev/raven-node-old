@@ -14,27 +14,29 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
-import {Attachments} from './Attachments';
-import {EmailRecipient} from './EmailRecipient';
+import { RavenApiClient } from "../RavenApiClient";
+import { Attachments } from "./Attachments";
+import { EmailRecipient } from "./EmailRecipient";
 
 export class EmailOverride {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new EmailOverride();
-      if (data.hasOwnProperty('from'))
-        obj.from = EmailRecipient.constructFromObject(data['from']);
-      if (data.hasOwnProperty('cc'))
-        obj.cc = ApiClient.convertToType(data['cc'], [EmailRecipient]);
-      if (data.hasOwnProperty('bcc'))
-        obj.bcc = ApiClient.convertToType(data['bcc'], [EmailRecipient]);
-      if (data.hasOwnProperty('attachments'))
-        obj.attachments = Attachments.constructFromObject(data['attachments']);
-      if (data.hasOwnProperty('scheduled_at'))
-        obj.scheduledAt = ApiClient.convertToType(data['scheduled_at'], 'String');
+      if (data.hasOwnProperty("from"))
+        obj.from = EmailRecipient.constructFromObject(data["from"]);
+      if (data.hasOwnProperty("cc"))
+        obj.cc = RavenApiClient.convertToType(data["cc"], [EmailRecipient]);
+      if (data.hasOwnProperty("bcc"))
+        obj.bcc = RavenApiClient.convertToType(data["bcc"], [EmailRecipient]);
+      if (data.hasOwnProperty("attachments"))
+        obj.attachments = Attachments.constructFromObject(data["attachments"]);
+      if (data.hasOwnProperty("scheduled_at"))
+        obj.scheduledAt = RavenApiClient.convertToType(
+          data["scheduled_at"],
+          "String"
+        );
     }
     return obj;
   }
@@ -78,7 +80,6 @@ export class EmailOverride {
   setScheduledAt(scheduledAt) {
     this.scheduledAt = scheduledAt;
   }
-
 }
 
 EmailOverride.prototype.from = undefined;
@@ -90,5 +91,3 @@ EmailOverride.prototype.bcc = undefined;
 EmailOverride.prototype.attachments = undefined;
 
 EmailOverride.prototype.scheduledAt = undefined;
-
-

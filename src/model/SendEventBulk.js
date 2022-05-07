@@ -14,7 +14,7 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class SendEventBulk {
   constructor(event, batch) {
@@ -25,10 +25,10 @@ export class SendEventBulk {
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new SendEventBulk();
-      if (data.hasOwnProperty('event'))
-        obj.event = ApiClient.convertToType(data['event'], 'String');
-      if (data.hasOwnProperty('batch'))
-        obj.batch = ApiClient.convertToType(data['batch'], [Object]);
+      if (data.hasOwnProperty("event"))
+        obj.event = RavenApiClient.convertToType(data["event"], "String");
+      if (data.hasOwnProperty("batch"))
+        obj.batch = RavenApiClient.convertToType(data["batch"], [Object]);
     }
     return obj;
   }
@@ -48,11 +48,8 @@ export class SendEventBulk {
   setBatch(batch) {
     this.batch = batch;
   }
-
 }
 
 SendEventBulk.prototype.event = undefined;
 
 SendEventBulk.prototype.batch = undefined;
-
-

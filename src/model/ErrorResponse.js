@@ -14,19 +14,18 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class ErrorResponse {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new ErrorResponse();
-      if (data.hasOwnProperty('id'))
-        obj.id = ApiClient.convertToType(data['id'], 'String');
-      if (data.hasOwnProperty('error'))
-        obj.error = ApiClient.convertToType(data['error'], 'String');
+      if (data.hasOwnProperty("id"))
+        obj.id = RavenApiClient.convertToType(data["id"], "String");
+      if (data.hasOwnProperty("error"))
+        obj.error = RavenApiClient.convertToType(data["error"], "String");
     }
     return obj;
   }
@@ -46,11 +45,8 @@ export class ErrorResponse {
   setError(error) {
     this.error = error;
   }
-
 }
 
 ErrorResponse.prototype.id = undefined;
 
 ErrorResponse.prototype.error = undefined;
-
-

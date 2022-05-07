@@ -14,19 +14,21 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class SmsOverride {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new SmsOverride();
-      if (data.hasOwnProperty('sender'))
-        obj.sender = ApiClient.convertToType(data['sender'], 'String');
-      if (data.hasOwnProperty('scheduled_at'))
-        obj.scheduledAt = ApiClient.convertToType(data['scheduled_at'], 'String');
+      if (data.hasOwnProperty("sender"))
+        obj.sender = RavenApiClient.convertToType(data["sender"], "String");
+      if (data.hasOwnProperty("scheduled_at"))
+        obj.scheduledAt = RavenApiClient.convertToType(
+          data["scheduled_at"],
+          "String"
+        );
     }
     return obj;
   }
@@ -46,11 +48,8 @@ export class SmsOverride {
   setScheduledAt(scheduledAt) {
     this.scheduledAt = scheduledAt;
   }
-
 }
 
 SmsOverride.prototype.sender = undefined;
 
 SmsOverride.prototype.scheduledAt = undefined;
-
-

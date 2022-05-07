@@ -14,19 +14,16 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class Data {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new Data();
-      ApiClient.constructFromObject(data, obj, 'Object');
+      RavenApiClient.constructFromObject(data, obj, "Object");
     }
     return obj;
   }
-
 }
-

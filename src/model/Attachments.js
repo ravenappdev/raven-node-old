@@ -14,21 +14,20 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class Attachments {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new Attachments();
-      if (data.hasOwnProperty('filename'))
-        obj.filename = ApiClient.convertToType(data['filename'], 'String');
-      if (data.hasOwnProperty('content'))
-        obj.content = ApiClient.convertToType(data['content'], 'String');
-      if (data.hasOwnProperty('url'))
-        obj.url = ApiClient.convertToType(data['url'], 'String');
+      if (data.hasOwnProperty("filename"))
+        obj.filename = RavenApiClient.convertToType(data["filename"], "String");
+      if (data.hasOwnProperty("content"))
+        obj.content = RavenApiClient.convertToType(data["content"], "String");
+      if (data.hasOwnProperty("url"))
+        obj.url = RavenApiClient.convertToType(data["url"], "String");
     }
     return obj;
   }
@@ -56,7 +55,6 @@ export class Attachments {
   setUrl(url) {
     this.url = url;
   }
-
 }
 
 Attachments.prototype.filename = undefined;
@@ -64,5 +62,3 @@ Attachments.prototype.filename = undefined;
 Attachments.prototype.content = undefined;
 
 Attachments.prototype.url = undefined;
-
-

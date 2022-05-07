@@ -14,21 +14,20 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class Response {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new Response();
-      if (data.hasOwnProperty('success'))
-        obj.success = ApiClient.convertToType(data['success'], 'Boolean');
-      if (data.hasOwnProperty('id'))
-        obj.id = ApiClient.convertToType(data['id'], 'String');
-      if (data.hasOwnProperty('error'))
-        obj.error = ApiClient.convertToType(data['error'], 'String');
+      if (data.hasOwnProperty("success"))
+        obj.success = RavenApiClient.convertToType(data["success"], "Boolean");
+      if (data.hasOwnProperty("id"))
+        obj.id = RavenApiClient.convertToType(data["id"], "String");
+      if (data.hasOwnProperty("error"))
+        obj.error = RavenApiClient.convertToType(data["error"], "String");
     }
     return obj;
   }
@@ -56,7 +55,6 @@ export class Response {
   setError(error) {
     this.error = error;
   }
-
 }
 
 Response.prototype.success = undefined;
@@ -64,5 +62,3 @@ Response.prototype.success = undefined;
 Response.prototype.id = undefined;
 
 Response.prototype.error = undefined;
-
-

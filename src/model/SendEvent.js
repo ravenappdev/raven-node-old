@@ -14,10 +14,10 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
-import {Data} from './Data';
-import {EventOverride} from './EventOverride';
-import {User} from './User';
+import { RavenApiClient } from "../RavenApiClient";
+import { Data } from "./Data";
+import { EventOverride } from "./EventOverride";
+import { User } from "./User";
 
 export class SendEvent {
   constructor(event, user) {
@@ -28,16 +28,19 @@ export class SendEvent {
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new SendEvent();
-      if (data.hasOwnProperty('event'))
-        obj.event = ApiClient.convertToType(data['event'], 'String');
-      if (data.hasOwnProperty('user'))
-        obj.user = User.constructFromObject(data['user']);
-      if (data.hasOwnProperty('data'))
-        obj.data = Data.constructFromObject(data['data']);
-      if (data.hasOwnProperty('scheduled_at'))
-        obj.scheduledAt = ApiClient.convertToType(data['scheduled_at'], 'String');
-      if (data.hasOwnProperty('override'))
-        obj.override = EventOverride.constructFromObject(data['override']);
+      if (data.hasOwnProperty("event"))
+        obj.event = RavenApiClient.convertToType(data["event"], "String");
+      if (data.hasOwnProperty("user"))
+        obj.user = User.constructFromObject(data["user"]);
+      if (data.hasOwnProperty("data"))
+        obj.data = Data.constructFromObject(data["data"]);
+      if (data.hasOwnProperty("scheduled_at"))
+        obj.scheduledAt = RavenApiClient.convertToType(
+          data["scheduled_at"],
+          "String"
+        );
+      if (data.hasOwnProperty("override"))
+        obj.override = EventOverride.constructFromObject(data["override"]);
     }
     return obj;
   }
@@ -81,7 +84,6 @@ export class SendEvent {
   setOverride(override) {
     this.override = override;
   }
-
 }
 
 SendEvent.prototype.event = undefined;
@@ -93,5 +95,3 @@ SendEvent.prototype.data = undefined;
 SendEvent.prototype.scheduledAt = undefined;
 
 SendEvent.prototype.override = undefined;
-
-

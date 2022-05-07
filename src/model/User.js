@@ -14,37 +14,54 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class User {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new User();
-      if (data.hasOwnProperty('user_id'))
-        obj.userId = ApiClient.convertToType(data['user_id'], 'String');
-      if (data.hasOwnProperty('mobile'))
-        obj.mobile = ApiClient.convertToType(data['mobile'], 'String');
-      if (data.hasOwnProperty('email'))
-        obj.email = ApiClient.convertToType(data['email'], 'String');
-      if (data.hasOwnProperty('whatsapp_mobile'))
-        obj.whatsappMobile = ApiClient.convertToType(data['whatsapp_mobile'], 'String');
-      if (data.hasOwnProperty('onesignal_external_id'))
-        obj.onesignalExternalId = ApiClient.convertToType(data['onesignal_external_id'], 'String');
-      if (data.hasOwnProperty('fcm_tokens'))
-        obj.fcmTokens = ApiClient.convertToType(data['fcm_tokens'], ['String']);
-      if (data.hasOwnProperty('ios_tokens'))
-        obj.iosTokens = ApiClient.convertToType(data['ios_tokens'], ['String']);
-      if (data.hasOwnProperty('fcm_topic'))
-        obj.fcmTopic = ApiClient.convertToType(data['fcm_topic'], ['String']);
-      if (data.hasOwnProperty('fcm_device_group'))
-        obj.fcmDeviceGroup = ApiClient.convertToType(data['fcm_device_group'], ['String']);
-      if (data.hasOwnProperty('slack'))
-        obj.slack = ApiClient.convertToType(data['slack'], Object);
-      if (data.hasOwnProperty('onesignal_player_ids'))
-        obj.onesignalPlayerIds = ApiClient.convertToType(data['onesignal_player_ids'], ['String']);
+      if (data.hasOwnProperty("user_id"))
+        obj.userId = RavenApiClient.convertToType(data["user_id"], "String");
+      if (data.hasOwnProperty("mobile"))
+        obj.mobile = RavenApiClient.convertToType(data["mobile"], "String");
+      if (data.hasOwnProperty("email"))
+        obj.email = RavenApiClient.convertToType(data["email"], "String");
+      if (data.hasOwnProperty("whatsapp_mobile"))
+        obj.whatsappMobile = RavenApiClient.convertToType(
+          data["whatsapp_mobile"],
+          "String"
+        );
+      if (data.hasOwnProperty("onesignal_external_id"))
+        obj.onesignalExternalId = RavenApiClient.convertToType(
+          data["onesignal_external_id"],
+          "String"
+        );
+      if (data.hasOwnProperty("fcm_tokens"))
+        obj.fcmTokens = RavenApiClient.convertToType(data["fcm_tokens"], [
+          "String",
+        ]);
+      if (data.hasOwnProperty("ios_tokens"))
+        obj.iosTokens = RavenApiClient.convertToType(data["ios_tokens"], [
+          "String",
+        ]);
+      if (data.hasOwnProperty("fcm_topic"))
+        obj.fcmTopic = RavenApiClient.convertToType(data["fcm_topic"], [
+          "String",
+        ]);
+      if (data.hasOwnProperty("fcm_device_group"))
+        obj.fcmDeviceGroup = RavenApiClient.convertToType(
+          data["fcm_device_group"],
+          ["String"]
+        );
+      if (data.hasOwnProperty("slack"))
+        obj.slack = RavenApiClient.convertToType(data["slack"], Object);
+      if (data.hasOwnProperty("onesignal_player_ids"))
+        obj.onesignalPlayerIds = RavenApiClient.convertToType(
+          data["onesignal_player_ids"],
+          ["String"]
+        );
     }
     return obj;
   }
@@ -136,7 +153,6 @@ export class User {
   setOnesignalPlayerIds(onesignalPlayerIds) {
     this.onesignalPlayerIds = onesignalPlayerIds;
   }
-
 }
 
 User.prototype.userId = undefined;
@@ -160,5 +176,3 @@ User.prototype.fcmDeviceGroup = undefined;
 User.prototype.slack = undefined;
 
 User.prototype.onesignalPlayerIds = undefined;
-
-

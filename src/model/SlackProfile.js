@@ -14,21 +14,26 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class SlackProfile {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new SlackProfile();
-      if (data.hasOwnProperty('access_token'))
-        obj.accessToken = ApiClient.convertToType(data['access_token'], 'String');
-      if (data.hasOwnProperty('email'))
-        obj.email = ApiClient.convertToType(data['email'], 'String');
-      if (data.hasOwnProperty('channel_id'))
-        obj.channelId = ApiClient.convertToType(data['channel_id'], 'String');
+      if (data.hasOwnProperty("access_token"))
+        obj.accessToken = RavenApiClient.convertToType(
+          data["access_token"],
+          "String"
+        );
+      if (data.hasOwnProperty("email"))
+        obj.email = RavenApiClient.convertToType(data["email"], "String");
+      if (data.hasOwnProperty("channel_id"))
+        obj.channelId = RavenApiClient.convertToType(
+          data["channel_id"],
+          "String"
+        );
     }
     return obj;
   }
@@ -56,7 +61,6 @@ export class SlackProfile {
   setChannelId(channelId) {
     this.channelId = channelId;
   }
-
 }
 
 SlackProfile.prototype.accessToken = undefined;
@@ -64,5 +68,3 @@ SlackProfile.prototype.accessToken = undefined;
 SlackProfile.prototype.email = undefined;
 
 SlackProfile.prototype.channelId = undefined;
-
-

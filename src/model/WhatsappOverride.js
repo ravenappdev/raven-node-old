@@ -14,17 +14,19 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class WhatsappOverride {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new WhatsappOverride();
-      if (data.hasOwnProperty('scheduled_at'))
-        obj.scheduledAt = ApiClient.convertToType(data['scheduled_at'], 'String');
+      if (data.hasOwnProperty("scheduled_at"))
+        obj.scheduledAt = RavenApiClient.convertToType(
+          data["scheduled_at"],
+          "String"
+        );
     }
     return obj;
   }
@@ -36,9 +38,6 @@ export class WhatsappOverride {
   setScheduledAt(scheduledAt) {
     this.scheduledAt = scheduledAt;
   }
-
 }
 
 WhatsappOverride.prototype.scheduledAt = undefined;
-
-

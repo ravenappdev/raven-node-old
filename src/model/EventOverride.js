@@ -14,39 +14,40 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
-import {EmailOverride} from './EmailOverride';
-import {ProviderOverride} from './ProviderOverride';
-import {PushOverride} from './PushOverride';
-import {SlackOverride} from './SlackOverride';
-import {SmsOverride} from './SmsOverride';
-import {VoiceOverride} from './VoiceOverride';
-import {WebhookOverride} from './WebhookOverride';
-import {WhatsappOverride} from './WhatsappOverride';
+import { RavenApiClient } from "../RavenApiClient";
+import { EmailOverride } from "./EmailOverride";
+import { ProviderOverride } from "./ProviderOverride";
+import { PushOverride } from "./PushOverride";
+import { SlackOverride } from "./SlackOverride";
+import { SmsOverride } from "./SmsOverride";
+import { VoiceOverride } from "./VoiceOverride";
+import { WebhookOverride } from "./WebhookOverride";
+import { WhatsappOverride } from "./WhatsappOverride";
 
 export class EventOverride {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new EventOverride();
-      if (data.hasOwnProperty('email'))
-        obj.email = EmailOverride.constructFromObject(data['email']);
-      if (data.hasOwnProperty('sms'))
-        obj.sms = SmsOverride.constructFromObject(data['sms']);
-      if (data.hasOwnProperty('whatsapp'))
-        obj.whatsapp = WhatsappOverride.constructFromObject(data['whatsapp']);
-      if (data.hasOwnProperty('push'))
-        obj.push = PushOverride.constructFromObject(data['push']);
-      if (data.hasOwnProperty('webhook'))
-        obj.webhook = WebhookOverride.constructFromObject(data['webhook']);
-      if (data.hasOwnProperty('voice'))
-        obj.voice = VoiceOverride.constructFromObject(data['voice']);
-      if (data.hasOwnProperty('slack'))
-        obj.slack = SlackOverride.constructFromObject(data['slack']);
-      if (data.hasOwnProperty('providers'))
-        obj.providers = ApiClient.convertToType(data['providers'], {'String': ProviderOverride});
+      if (data.hasOwnProperty("email"))
+        obj.email = EmailOverride.constructFromObject(data["email"]);
+      if (data.hasOwnProperty("sms"))
+        obj.sms = SmsOverride.constructFromObject(data["sms"]);
+      if (data.hasOwnProperty("whatsapp"))
+        obj.whatsapp = WhatsappOverride.constructFromObject(data["whatsapp"]);
+      if (data.hasOwnProperty("push"))
+        obj.push = PushOverride.constructFromObject(data["push"]);
+      if (data.hasOwnProperty("webhook"))
+        obj.webhook = WebhookOverride.constructFromObject(data["webhook"]);
+      if (data.hasOwnProperty("voice"))
+        obj.voice = VoiceOverride.constructFromObject(data["voice"]);
+      if (data.hasOwnProperty("slack"))
+        obj.slack = SlackOverride.constructFromObject(data["slack"]);
+      if (data.hasOwnProperty("providers"))
+        obj.providers = RavenApiClient.convertToType(data["providers"], {
+          String: ProviderOverride,
+        });
     }
     return obj;
   }
@@ -114,7 +115,6 @@ export class EventOverride {
   setProviders(providers) {
     this.providers = providers;
   }
-
 }
 
 EventOverride.prototype.email = undefined;
@@ -132,5 +132,3 @@ EventOverride.prototype.voice = undefined;
 EventOverride.prototype.slack = undefined;
 
 EventOverride.prototype.providers = undefined;
-
-

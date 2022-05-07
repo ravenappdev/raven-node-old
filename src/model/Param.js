@@ -14,19 +14,18 @@
  *
  */
 
-import {ApiClient} from '../ApiClient';
+import { RavenApiClient } from "../RavenApiClient";
 
 export class Param {
-  constructor() {
-  }
+  constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new Param();
-      if (data.hasOwnProperty('name'))
-        obj.name = ApiClient.convertToType(data['name'], 'String');
-      if (data.hasOwnProperty('value'))
-        obj.value = ApiClient.convertToType(data['value'], 'String');
+      if (data.hasOwnProperty("name"))
+        obj.name = RavenApiClient.convertToType(data["name"], "String");
+      if (data.hasOwnProperty("value"))
+        obj.value = RavenApiClient.convertToType(data["value"], "String");
     }
     return obj;
   }
@@ -46,11 +45,8 @@ export class Param {
   setValue(value) {
     this.value = value;
   }
-
 }
 
 Param.prototype.name = undefined;
 
 Param.prototype.value = undefined;
-
-
