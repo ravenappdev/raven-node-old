@@ -1,4 +1,4 @@
-# RavenApi.ErrorResponse
+# raven.ErrorResponse
 
 ## Properties
 Name | Type | Description | Notes

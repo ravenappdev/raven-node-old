@@ -17,28 +17,28 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', '../../../src//index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('../../../src//index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.RavenApi);
+    factory(root.expect, root.raven);
   }
-}(this, function(expect, RavenApi) {
+}(this, function(expect, raven) {
   'use strict';
 
   var instance;
 
-  describe('(package)', function() {
+  describe('', function() {
     describe('EmailRecipient', function() {
       beforeEach(function() {
-        instance = new RavenApi.EmailRecipient();
+        instance = new raven.EmailRecipient();
       });
 
       it('should create an instance of EmailRecipient', function() {
         // TODO: update the code to test EmailRecipient
-        expect(instance).to.be.a(RavenApi.EmailRecipient);
+        expect(instance).to.be.a(raven.EmailRecipient);
       });
 
       it('should have the property name (base name: "name")', function() {

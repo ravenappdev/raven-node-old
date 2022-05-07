@@ -1,4 +1,4 @@
-# RavenApi.SlackProfile
+# raven.SlackProfile
 
 ## Properties
 Name | Type | Description | Notes

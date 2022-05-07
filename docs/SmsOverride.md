@@ -1,4 +1,4 @@
-# RavenApi.SmsOverride
+# raven.SmsOverride
 
 ## Properties
 Name | Type | Description | Notes

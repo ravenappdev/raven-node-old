@@ -17,28 +17,28 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', '../../../src//index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('../../../src//index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.RavenApi);
+    factory(root.expect, root.raven);
   }
-}(this, function(expect, RavenApi) {
+}(this, function(expect, raven) {
   'use strict';
 
   var instance;
 
-  describe('(package)', function() {
+  describe('', function() {
     describe('WebhookOverride', function() {
       beforeEach(function() {
-        instance = new RavenApi.WebhookOverride();
+        instance = new raven.WebhookOverride();
       });
 
       it('should create an instance of WebhookOverride', function() {
         // TODO: update the code to test WebhookOverride
-        expect(instance).to.be.a(RavenApi.WebhookOverride);
+        expect(instance).to.be.a(raven.WebhookOverride);
       });
 
       it('should have the property scheduledAt (base name: "scheduled_at")', function() {

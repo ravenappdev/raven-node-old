@@ -1,4 +1,4 @@
-# RavenApi.User
+# raven.User
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# RavenApi.EmailOverride
+# raven.EmailOverride
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# RavenApi.EmailRecipient
+# raven.EmailRecipient
 
 ## Properties
 Name | Type | Description | Notes

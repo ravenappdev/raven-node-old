@@ -1,4 +1,4 @@
-# RavenApi.EventApi
+# raven.EventApi
 
 All URIs are relative to *https://api.ravenapp.dev*
 
@@ -18,8 +18,8 @@ This API will send the event in bulk to the clients specified
 
 ### Example
 ```javascript
-import {RavenApi} from 'raven_api';
-let defaultClient = RavenApi.ApiClient.instance;
+import {raven} from 'raven_api';
+let defaultClient = raven.ApiClient.instance;
 
 // Configure API key authorization: ApiKeyAuth
 let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
@@ -27,11 +27,11 @@ ApiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //ApiKeyAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new RavenApi.EventApi();
+let apiInstance = new raven.EventApi();
 
 let appId = "appId_example"; // String | app id of raven app
 
-let event = new RavenApi.SendEventBulk(); // SendEventBulk | the body for the event that has to be triggered
+let event = new raven.SendEventBulk(); // SendEventBulk | the body for the event that has to be triggered
 
 apiInstance.sendBulkEvent(appId, event).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -71,8 +71,8 @@ This API will send the event to the client specified
 
 ### Example
 ```javascript
-import {RavenApi} from 'raven_api';
-let defaultClient = RavenApi.ApiClient.instance;
+import {raven} from 'raven_api';
+let defaultClient = raven.ApiClient.instance;
 
 // Configure API key authorization: ApiKeyAuth
 let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
@@ -80,11 +80,11 @@ ApiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //ApiKeyAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new RavenApi.EventApi();
+let apiInstance = new raven.EventApi();
 
 let appId = "appId_example"; // String | app id of raven app
 
-let event = new RavenApi.SendEvent(); // SendEvent | the body for the event that has to be triggered
+let event = new raven.SendEvent(); // SendEvent | the body for the event that has to be triggered
 
 let opts = { 
   'idempotencyKey': "idempotencyKey_example" // String | idempotency key of api

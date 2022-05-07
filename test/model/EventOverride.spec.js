@@ -17,28 +17,28 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD.
-    define(['expect.js', '../../src/index'], factory);
+    define(['expect.js', '../../../src//index'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require('../../src/index'));
+    factory(require('expect.js'), require('../../../src//index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.RavenApi);
+    factory(root.expect, root.raven);
   }
-}(this, function(expect, RavenApi) {
+}(this, function(expect, raven) {
   'use strict';
 
   var instance;
 
-  describe('(package)', function() {
+  describe('', function() {
     describe('EventOverride', function() {
       beforeEach(function() {
-        instance = new RavenApi.EventOverride();
+        instance = new raven.EventOverride();
       });
 
       it('should create an instance of EventOverride', function() {
         // TODO: update the code to test EventOverride
-        expect(instance).to.be.a(RavenApi.EventOverride);
+        expect(instance).to.be.a(raven.EventOverride);
       });
 
       it('should have the property email (base name: "email")', function() {

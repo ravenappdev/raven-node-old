@@ -1,4 +1,4 @@
-# RavenApi.SlackOverride
+# raven.SlackOverride
 
 ## Properties
 Name | Type | Description | Notes

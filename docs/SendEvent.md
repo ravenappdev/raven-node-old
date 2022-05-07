@@ -1,4 +1,4 @@
-# RavenApi.SendEvent
+# raven.SendEvent
 
 ## Properties
 Name | Type | Description | Notes

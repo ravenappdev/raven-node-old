@@ -1,4 +1,4 @@
-# RavenApi.SuccessResponse
+# raven.SuccessResponse
 
 ## Properties
 Name | Type | Description | Notes
