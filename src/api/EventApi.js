@@ -23,10 +23,10 @@ import { SuccessResponse } from "../model/SuccessResponse";
 
 export class EventApi {
   constructor(apiClient) {
-    this.apiClient = apiClient || RavenApiClient.instance;
+    this.apiClient = apiClient || RavenApiClient();
   }
 
-  sendBulkEventWithHttpInfo(appId, event) {
+  sendBulkEventWithHttpInfo({ appId, event }) {
     let postBody = event;
 
     // verify the required parameter 'appId' is set
@@ -47,7 +47,9 @@ export class EventApi {
       app_id: appId,
     };
     let queryParams = {};
-    let headerParams = {};
+    let headerParams = {
+      "Idempotency-Key": opts["idempotencyKey"],
+    };
     let formParams = {};
 
     let authNames = ["ApiKeyAuth"];
@@ -69,14 +71,14 @@ export class EventApi {
       returnType
     );
   }
-  sendBulkEvent(appId, event) {
-    return this.sendBulkEventWithHttpInfo(appId, event).then(function (
+  sendBulkEvent({ appId, event }) {
+    return this.sendBulkEventWithHttpInfo({ appId, event }).then(function (
       response_and_data
     ) {
       return response_and_data.data;
     });
   }
-  sendEventWithHttpInfo(appId, event, opts) {
+  sendEventWithHttpInfo({ appId, event, opts }) {
     opts = opts || {};
     let postBody = event;
 
@@ -122,8 +124,8 @@ export class EventApi {
       returnType
     );
   }
-  sendEvent(appId, event, opts) {
-    return this.sendEventWithHttpInfo(appId, event, opts).then(function (
+  sendEvent({ appId, event, opts }) {
+    return this.sendEventWithHttpInfo({ appId, event, opts }).then(function (
       response_and_data
     ) {
       return response_and_data.data;
