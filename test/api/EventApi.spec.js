@@ -44,14 +44,18 @@
           var event = new raven.SendEventBulk();
           event.event = "sample_event_1";
           event.batch = [];
+          var opts = {};
+          opts.idempotencyKey = "idempotencyKey_example";
 
-          instance.sendBulkEvent(appId, event).then(function(data) {
+          instance.sendBulkEvent(appId, event, opts).then(function(data) {
             // TODO: update response assertions
-            expect(data).to.be.a(raven.SuccessResponse);
+            expect(data).to.be.a(raven.Response);
             expect(data.success).to.be.a('boolean');
             // expect(data.success).to.be(true);
             expect(data.id).to.be.a('string');
             // expect(data.id).to.be("1d1ed73c-96e6-4aa3-abc2-2e9a926f773a");
+            expect(data.error).to.be.a('string');
+            // expect(data.error).to.be("event not found");
 
             done();
           }, function(error) {
