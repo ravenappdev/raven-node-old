@@ -17,12 +17,23 @@
 import superagent from "superagent";
 import querystring from "querystring";
 
+const DEFAULTS = {
+  BASE_URL: "https://api.ravenapp.dev".replace(/\/+$/, ""),
+};
+
 export class RavenApiClient {
-  constructor() {
-    this.basePath = "https://api.ravenapp.dev".replace(/\/+$/, "");
+  constructor(options) {
+    this.basePath =
+      options.basePath || process.env.RAVEN_BASE_URL || DEFAULTS.BASE_URL;
 
     this.authentications = {
-      ApiKeyAuth: { type: "apiKey", in: "header", name: "Authorization" },
+      ApiKeyAuth: {
+        type: "apiKey",
+        in: "header",
+        name: "Authorization",
+        apiKey: options["apiKey"],
+        apiKeyPrefix: options["apiKeyPrefix"],
+      },
     };
 
     this.defaultHeaders = {};
