@@ -9,7 +9,13 @@ interface RavenApiClientConfiguration {
   agent: superagent.agent;
 }
 
-interface RavenApiClientSchema {
+export interface RavenApiClientOptions {
+  baseUrl?: string;
+  apiKey?: string;
+}
+
+export class RavenApiClient {
+  constructor(options: RavenApiClientOptions);
   CollectionFormatEnum: {
     CSV: string;
     SSV: string;
@@ -44,17 +50,8 @@ interface RavenApiClientSchema {
   ) => Promise<any>;
 }
 
-export interface RavenApiClientOptions {
-  baseUrl?: string;
-  apiKey?: string;
-}
-
-export function RavenApiClient(
-  options: RavenApiClientOptions
-): RavenApiClientSchema;
-
 export class User {
-  static constructFromObject(data: any, obj: any): any;
+  static constructFromObject(data: object, obj: object): any;
   getUserId(): any;
   setUserId(userId: any): void;
   userId: any;
@@ -89,41 +86,169 @@ export class User {
   setOnesignalPlayerIds(onesignalPlayerIds: any): void;
   onesignalPlayerIds: any;
 }
+
+export class EmailOverride {
+  static constructFromObject(data: object, obj: object): EmailOverride;
+  getFrom(): EmailRecipient;
+  setFrom(from: EmailRecipient): void;
+  from: EmailRecipient;
+  getCc(): EmailRecipient;
+  setCc(cc: EmailRecipient): void;
+  cc: EmailRecipient;
+  getBcc(): EmailRecipient;
+  setBcc(bcc: EmailRecipient): void;
+  bcc: EmailRecipient;
+  getAttachments(): Attachments;
+  setAttachments(attachments: Attachments): void;
+  attachments: Attachments;
+  getScheduledAt(): string;
+  setScheduledAt(scheduledAt: string): void;
+  scheduledAt: string;
+}
+
+export class ProviderOverride {
+  static constructFromObject(data: object, obj: object): ProviderOverride;
+  getPayload(): object;
+  setPayload(payload: object): void;
+  payload: object;
+  getFormParams(): Array<Param>;
+  setFormParams(formParams: Array<Param>): void;
+  formParams: Array<Param>;
+  getQueryParams(): Array<Param>;
+  setQueryParams(queryParams: Array<Param>): void;
+  queryParams: Array<Param>;
+  getConfig(): object;
+  setConfig(config: object): void;
+  config: object;
+}
+
+export class PushOverride {
+  static constructFromObject(data: object, obj: object): PushOverride;
+  getScheduledAt(): string;
+  setScheduledAt(scheduledAt: string): void;
+  scheduledAt: string;
+}
+
+export class SlackOverride {
+  static constructFromObject(data: object, obj: object): SlackOverride;
+  getScheduledAt(): string;
+  setScheduledAt(scheduledAt: string): void;
+  scheduledAt: string;
+}
+
+export class SmsOverride {
+  static constructFromObject(data: object, obj: object): SmsOverride;
+  getSender(): any;
+  setSender(sender: any): void;
+  sender: any;
+  getScheduledAt(): any;
+  setScheduledAt(scheduledAt: any): void;
+  scheduledAt: any;
+}
+
+export class VoiceOverride {
+  static constructFromObject(data: object, obj: object): VoiceOverride;
+  getScheduledAt(): any;
+  setScheduledAt(scheduledAt: any): void;
+  scheduledAt: any;
+}
+
+export class WebhookOverride {
+  static constructFromObject(data: object, obj: object): WebhookOverride;
+  getScheduledAt(): any;
+  setScheduledAt(scheduledAt: any): void;
+  scheduledAt: any;
+}
+
+export class WhatsappOverride {
+  static constructFromObject(data: object, obj: object): WhatsappOverride;
+  getScheduledAt(): any;
+  setScheduledAt(scheduledAt: any): void;
+  scheduledAt: any;
+}
+
+export class Attachments {
+  static constructFromObject(data: object, obj: object): Attachments;
+  getFilename(): string;
+  setFilename(filename: string): void;
+  filename: string;
+  getContent(): string;
+  setContent(content: string): void;
+  content: string;
+  getUrl(): string;
+  setUrl(url: string): void;
+  url: string;
+}
+
+export class EmailRecipient {
+  static constructFromObject(data: object, obj: object): EmailRecipient;
+  getName(): string;
+  setName(name: string): void;
+  name: string;
+  getAddress(): string;
+  setAddress(address: string): void;
+  address: string;
+}
+
+export class Param {
+  static constructFromObject(data: object, obj: object): Param;
+  getName(): string;
+  setName(name: string): void;
+  name: string;
+  getValue(): string;
+  setValue(value: string): void;
+  value: string;
+}
+
+export class Response {
+  static constructFromObject(data: object, obj: object): Response;
+  getSuccess(): boolean;
+  setSuccess(success: boolean): void;
+  success: boolean;
+  getId(): string;
+  setId(id: string): void;
+  id: string;
+  getError(): string;
+  setError(error: string): void;
+  error: string;
+}
+
 export class EventOverride {
-  static constructFromObject(data: any, obj: any): any;
-  getEmail(): any;
-  setEmail(email: any): void;
-  email: any;
-  getSms(): any;
-  setSms(sms: any): void;
-  sms: any;
-  getWhatsapp(): any;
-  setWhatsapp(whatsapp: any): void;
-  whatsapp: any;
-  getPush(): any;
-  setPush(push: any): void;
-  push: any;
-  getWebhook(): any;
-  setWebhook(webhook: any): void;
-  webhook: any;
-  getVoice(): any;
-  setVoice(voice: any): void;
-  voice: any;
-  getSlack(): any;
-  setSlack(slack: any): void;
-  slack: any;
-  getProviders(): any;
-  setProviders(providers: any): void;
-  providers: any;
+  static constructFromObject(data: object, obj: object): EventOverride;
+  getEmail(): EmailOverride;
+  setEmail(email: EmailOverride): void;
+  email: EmailOverride;
+  getSms(): SmsOverride;
+  setSms(sms: SmsOverride): void;
+  sms: SmsOverride;
+  getWhatsapp(): WhatsappOverride;
+  setWhatsapp(whatsapp: WhatsappOverride): void;
+  whatsapp: WhatsappOverride;
+  getPush(): PushOverride;
+  setPush(push: PushOverride): void;
+  push: PushOverride;
+  getWebhook(): WebhookOverride;
+  setWebhook(webhook: WebhookOverride): void;
+  webhook: WebhookOverride;
+  getVoice(): VoiceOverride;
+  setVoice(voice: VoiceOverride): void;
+  voice: VoiceOverride;
+  getSlack(): SlackOverride;
+  setSlack(slack: SlackOverride): void;
+  slack: SlackOverride;
+  getProviders(): ProviderOverride;
+  setProviders(providers: ProviderOverride): void;
+  providers: ProviderOverride;
 }
 
 interface BulkEventSchema {
   user: User;
-  data?: Object;
+  data?: object;
   override?: EventOverride;
 }
+
 export class SendEventBulk {
-  static constructFromObject(data: Object, obj: SendEventBulk): SendEventBulk;
+  static constructFromObject(data: object, obj: SendEventBulk): SendEventBulk;
   constructor(event: string, batch: Array<BulkEventSchema>);
   event: string;
   batch: Array<BulkEventSchema>;
@@ -133,11 +258,43 @@ export class SendEventBulk {
   setBatch(batch: Array<BulkEventSchema>): void;
 }
 
+export class SendEvent {
+  static constructFromObject(data: object, obj: object): any;
+  constructor(event: string, user: User);
+  event: string;
+  user: User;
+  getEvent(): string;
+  setEvent(event: string): void;
+  getUser(): User;
+  setUser(user: User): void;
+  getData(): object;
+  setData(data: object): void;
+  data: object;
+  getScheduledAt(): string;
+  setScheduledAt(scheduledAt: string): void;
+  scheduledAt: string;
+  getOverride(): EventOverride;
+  setOverride(override: EventOverride): void;
+  override: EventOverride;
+}
+
 export class EventApi {
-  constructor(apiClient: RavenApiClientSchema);
-  apiClient: RavenApiClientSchema;
-  sendBulkEventWithHttpInfo(appId: string, event: SendEventBulk): any;
-  sendBulkEvent(appId: any, event: any): any;
-  sendEventWithHttpInfo(appId: any, event: any, opts: any): any;
-  sendEvent(appId: any, event: any, opts: any): any;
+  constructor(apiClient: RavenApiClient);
+  apiClient: RavenApiClient;
+  sendBulkEventWithHttpInfo(
+    appId: string,
+    event: SendEventBulk,
+    opts: object
+  ): Promise<Response>;
+  sendBulkEvent(
+    appId: string,
+    event: SendEventBulk,
+    opts: object
+  ): Promise<Response>;
+  sendEventWithHttpInfo(
+    appId: string,
+    event: SendEvent,
+    opts: object
+  ): Promise<Response>;
+  sendEvent(appId: string, event: SendEvent, opts: object): Promise<Response>;
 }

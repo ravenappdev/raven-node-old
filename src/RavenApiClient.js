@@ -256,24 +256,25 @@ const callApi = ({
   };
 };
 
-export const RavenApiClient = (options = {}) => {
-  const config = RavenApiClientConfig({
-    ...options,
-  });
-  return {
-    CollectionFormatEnum: CollectionFormatEnum,
-    paramToString: paramToString,
-    buildUrl: buildUrl,
-    isJsonMime: isJsonMime,
-    jsonPreferredMime: jsonPreferredMime,
-    isFileParam: isFileParam,
-    normalizeParams: normalizeParams,
-    buildCollectionParam: buildCollectionParam,
-    applyAuthToRequest: applyAuthToRequest,
-    deserialize: deserialize,
-    callApi: callApi(config),
-    parseDate: parseDate,
-    convertToType: convertToType,
-    constructFromObject: constructFromObject,
-  };
-};
+export class RavenApiClient {
+  constructor(options = {}) {
+    this.config = RavenApiClientConfig({
+      ...options,
+    });
+  }
+
+  CollectionFormatEnum = CollectionFormatEnum;
+  paramToString = paramToString;
+  buildUrl = buildUrl;
+  isJsonMime = isJsonMime;
+  jsonPreferredMime = jsonPreferredMime;
+  isFileParam = isFileParam;
+  normalizeParams = normalizeParams;
+  buildCollectionParam = buildCollectionParam;
+  applyAuthToRequest = applyAuthToRequest;
+  deserialize = deserialize;
+  callApi = callApi(this.config);
+  parseDate = parseDate;
+  convertToType = convertToType;
+  constructFromObject = constructFromObject;
+}

@@ -14,106 +14,118 @@
  *
  */
 
-import {ApiClient} from "../ApiClient";
-import {ErrorResponse} from '../model/ErrorResponse';
-import {Response} from '../model/Response';
-import {SendEvent} from '../model/SendEvent';
-import {SendEventBulk} from '../model/SendEventBulk';
-
+import { RavenApiClient } from "../RavenApiClient";
+import { Response } from "../model/Response";
 
 export class EventApi {
+  constructor(apiClient) {
+    this.apiClient = apiClient || RavenApiClient();
+  }
 
-    
-    constructor(apiClient) {
-        this.apiClient = apiClient || ApiClient.instance;
-    }
+  sendBulkEventWithHttpInfo({ appId, event, opts }) {
+    opts = opts || {};
+    let postBody = event;
 
-    sendBulkEventWithHttpInfo(appId, event, opts) {
-      opts = opts || {};
-      let postBody = event;
-
-      // verify the required parameter 'appId' is set
-      if (appId === undefined || appId === null) {
-        throw new Error("Missing the required parameter 'appId' when calling sendBulkEvent");
-      }
-
-      // verify the required parameter 'event' is set
-      if (event === undefined || event === null) {
-        throw new Error("Missing the required parameter 'event' when calling sendBulkEvent");
-      }
-
-
-      let pathParams = {
-        'app_id': appId
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-        'Idempotency-Key': opts['idempotencyKey']
-      };
-      let formParams = {
-      };
-
-      let authNames = ['ApiKeyAuth'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Response;
-
-      return this.apiClient.callApi(
-        '/v1/apps/{app_id}/events/bulk_send', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
+    // verify the required parameter 'appId' is set
+    if (appId === undefined || appId === null) {
+      throw new Error(
+        "Missing the required parameter 'appId' when calling sendBulkEvent"
       );
     }
-    sendBulkEvent(appId, event, opts) {
-      return this.sendBulkEventWithHttpInfo(appId, event, opts)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-    sendEventWithHttpInfo(appId, event, opts) {
-      opts = opts || {};
-      let postBody = event;
 
-      // verify the required parameter 'appId' is set
-      if (appId === undefined || appId === null) {
-        throw new Error("Missing the required parameter 'appId' when calling sendEvent");
-      }
-
-      // verify the required parameter 'event' is set
-      if (event === undefined || event === null) {
-        throw new Error("Missing the required parameter 'event' when calling sendEvent");
-      }
-
-
-      let pathParams = {
-        'app_id': appId
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-        'Idempotency-Key': opts['idempotencyKey']
-      };
-      let formParams = {
-      };
-
-      let authNames = ['ApiKeyAuth'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Response;
-
-      return this.apiClient.callApi(
-        '/v1/apps/{app_id}/events/send', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
+    // verify the required parameter 'event' is set
+    if (event === undefined || event === null) {
+      throw new Error(
+        "Missing the required parameter 'event' when calling sendBulkEvent"
       );
     }
-    sendEvent(appId, event, opts) {
-      return this.sendEventWithHttpInfo(appId, event, opts)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
+
+    let pathParams = {
+      app_id: appId,
+    };
+    let queryParams = {};
+    let headerParams = {
+      "Idempotency-Key": opts["idempotencyKey"],
+    };
+    let formParams = {};
+
+    let authNames = ["ApiKeyAuth"];
+    let contentTypes = ["application/json"];
+    let accepts = ["application/json"];
+    let returnType = Response;
+
+    return this.apiClient.callApi(
+      "/v1/apps/{app_id}/events/bulk_send",
+      "POST",
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      authNames,
+      contentTypes,
+      accepts,
+      returnType
+    );
+  }
+  sendBulkEvent({ appId, event, opts }) {
+    return this.sendBulkEventWithHttpInfo({ appId, event, opts }).then(
+      function (response_and_data) {
+        return response_and_data.data;
+      }
+    );
+  }
+  sendEventWithHttpInfo({ appId, event, opts }) {
+    opts = opts || {};
+    let postBody = event;
+
+    // verify the required parameter 'appId' is set
+    if (appId === undefined || appId === null) {
+      throw new Error(
+        "Missing the required parameter 'appId' when calling sendEvent"
+      );
     }
 
+    // verify the required parameter 'event' is set
+    if (event === undefined || event === null) {
+      throw new Error(
+        "Missing the required parameter 'event' when calling sendEvent"
+      );
+    }
 
+    let pathParams = {
+      app_id: appId,
+    };
+    let queryParams = {};
+    let headerParams = {
+      "Idempotency-Key": opts["idempotencyKey"],
+    };
+    let formParams = {};
+
+    let authNames = ["ApiKeyAuth"];
+    let contentTypes = ["application/json"];
+    let accepts = ["application/json"];
+    let returnType = Response;
+
+    return this.apiClient.callApi(
+      "/v1/apps/{app_id}/events/send",
+      "POST",
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      authNames,
+      contentTypes,
+      accepts,
+      returnType
+    );
+  }
+  sendEvent({ appId, event, opts }) {
+    return this.sendEventWithHttpInfo({ appId, event, opts }).then(function (
+      response_and_data
+    ) {
+      return response_and_data.data;
+    });
+  }
 }
