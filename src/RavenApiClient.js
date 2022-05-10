@@ -29,7 +29,7 @@ import {
   jsonPreferredMime,
 } from "./utils";
 const DEFAULTS = {
-  BASE_URL: "https://api.staging.ravenapp.dev".replace(/\/+$/, ""),
+  BASE_URL: "https://api.ravenapp.dev".replace(/\/+$/, ""),
 };
 
 const CollectionFormatEnum = {
