@@ -15,7 +15,18 @@
  */
 
 import { RavenApiClient } from "../RavenApiClient";
-
+import {
+  convertToType,
+  constructFromObject,
+  parseDate,
+  deserialize,
+  buildUrl,
+  normalizeParams,
+  isFileParam,
+  paramToString,
+  isJsonMime,
+  jsonPreferredMime,
+} from "../utils";
 export class Attachments {
   constructor() {}
 
@@ -23,11 +34,11 @@ export class Attachments {
     if (data) {
       obj = obj || new Attachments();
       if (data.hasOwnProperty("filename"))
-        obj.filename = RavenApiClient.convertToType(data["filename"], "String");
+        obj.filename = convertToType(data["filename"], "String");
       if (data.hasOwnProperty("content"))
-        obj.content = RavenApiClient.convertToType(data["content"], "String");
+        obj.content = convertToType(data["content"], "String");
       if (data.hasOwnProperty("url"))
-        obj.url = RavenApiClient.convertToType(data["url"], "String");
+        obj.url = convertToType(data["url"], "String");
     }
     return obj;
   }

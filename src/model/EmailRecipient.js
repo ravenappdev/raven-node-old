@@ -13,8 +13,7 @@
  * Do not edit the class manually.
  *
  */
-
-import { RavenApiClient } from "../RavenApiClient";
+import { convertToType } from "../utils";
 
 export class EmailRecipient {
   constructor() {}
@@ -23,9 +22,9 @@ export class EmailRecipient {
     if (data) {
       obj = obj || new EmailRecipient();
       if (data.hasOwnProperty("name"))
-        obj.name = RavenApiClient.convertToType(data["name"], "String");
+        obj.name = convertToType(data["name"], "String");
       if (data.hasOwnProperty("address"))
-        obj.address = RavenApiClient.convertToType(data["address"], "String");
+        obj.address = convertToType(data["address"], "String");
     }
     return obj;
   }

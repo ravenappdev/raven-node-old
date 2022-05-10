@@ -15,7 +15,7 @@
  */
 
 import { RavenApiClient } from "../RavenApiClient";
-
+import { convertToType } from "../utils";
 export class Param {
   constructor() {}
 
@@ -23,9 +23,9 @@ export class Param {
     if (data) {
       obj = obj || new Param();
       if (data.hasOwnProperty("name"))
-        obj.name = RavenApiClient.convertToType(data["name"], "String");
+        obj.name = convertToType(data["name"], "String");
       if (data.hasOwnProperty("value"))
-        obj.value = RavenApiClient.convertToType(data["value"], "String");
+        obj.value = convertToType(data["value"], "String");
     }
     return obj;
   }

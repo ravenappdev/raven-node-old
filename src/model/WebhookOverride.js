@@ -15,7 +15,7 @@
  */
 
 import { RavenApiClient } from "../RavenApiClient";
-
+import { convertToType } from "../utils";
 export class WebhookOverride {
   constructor() {}
 
@@ -23,10 +23,7 @@ export class WebhookOverride {
     if (data) {
       obj = obj || new WebhookOverride();
       if (data.hasOwnProperty("scheduled_at"))
-        obj.scheduledAt = RavenApiClient.convertToType(
-          data["scheduled_at"],
-          "String"
-        );
+        obj.scheduledAt = convertToType(data["scheduled_at"], "String");
     }
     return obj;
   }

@@ -14,7 +14,6 @@
  *
  */
 
-import { RavenApiClient } from "../RavenApiClient";
 import { EmailOverride } from "./EmailOverride";
 import { ProviderOverride } from "./ProviderOverride";
 import { PushOverride } from "./PushOverride";
@@ -23,7 +22,7 @@ import { SmsOverride } from "./SmsOverride";
 import { VoiceOverride } from "./VoiceOverride";
 import { WebhookOverride } from "./WebhookOverride";
 import { WhatsappOverride } from "./WhatsappOverride";
-
+import { convertToType } from "../utils";
 export class EventOverride {
   constructor() {}
 
@@ -45,7 +44,7 @@ export class EventOverride {
       if (data.hasOwnProperty("slack"))
         obj.slack = SlackOverride.constructFromObject(data["slack"]);
       if (data.hasOwnProperty("providers"))
-        obj.providers = RavenApiClient.convertToType(data["providers"], {
+        obj.providers = convertToType(data["providers"], {
           String: ProviderOverride,
         });
     }

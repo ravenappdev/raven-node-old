@@ -15,7 +15,7 @@
  */
 
 import { RavenApiClient } from "../RavenApiClient";
-
+import { convertToType } from "../utils";
 export class SlackProfile {
   constructor() {}
 
@@ -23,17 +23,11 @@ export class SlackProfile {
     if (data) {
       obj = obj || new SlackProfile();
       if (data.hasOwnProperty("access_token"))
-        obj.accessToken = RavenApiClient.convertToType(
-          data["access_token"],
-          "String"
-        );
+        obj.accessToken = convertToType(data["access_token"], "String");
       if (data.hasOwnProperty("email"))
-        obj.email = RavenApiClient.convertToType(data["email"], "String");
+        obj.email = convertToType(data["email"], "String");
       if (data.hasOwnProperty("channel_id"))
-        obj.channelId = RavenApiClient.convertToType(
-          data["channel_id"],
-          "String"
-        );
+        obj.channelId = convertToType(data["channel_id"], "String");
     }
     return obj;
   }

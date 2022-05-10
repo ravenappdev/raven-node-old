@@ -25,9 +25,11 @@ import {
   normalizeParams,
   isFileParam,
   paramToString,
+  isJsonMime,
+  jsonPreferredMime,
 } from "./utils";
 const DEFAULTS = {
-  BASE_URL: "https://api.ravenapp.dev".replace(/\/+$/, ""),
+  BASE_URL: "https://api.staging.ravenapp.dev".replace(/\/+$/, ""),
 };
 
 const CollectionFormatEnum = {
@@ -229,23 +231,30 @@ const callApi = ({
     // Attach previously saved cookies, if enabled
     if (enableCookies) {
       if (typeof window === "undefined") {
-        agent.attachCookies(request);
+        agent.jar.setCookie(agent.jar.getCookies().toString());
       } else {
         request.withCredentials();
       }
     }
-
     return new Promise((resolve, reject) => {
       request.end((error, response) => {
         if (error) {
+          var data = deserialize(response, returnType);
+          if (!data || !Object.keys(data).length) data = undefined;
+          else {
+            if (data.error && typeof data.error === "string")
+              error.message = data.error;
+            error.data = data;
+          }
           reject(error);
         } else {
           try {
             var data = deserialize(response, returnType);
-            if (enableCookies && typeof window === "undefined") {
-              agent.saveCookies(response);
-            }
-
+            // if (enableCookies && typeof window === "undefined") {
+            //   console.log(response);
+            //   // agent.setCookies(response);
+            // }
+            if (!data) data = undefined;
             resolve({ data, response });
           } catch (err) {
             reject(err);
@@ -256,24 +265,27 @@ const callApi = ({
   };
 };
 
-export const RavenApiClient = (options = {}) => {
-  const config = RavenApiClientConfig({
-    ...options,
-  });
-  return {
-    CollectionFormatEnum: CollectionFormatEnum,
-    paramToString: paramToString,
-    buildUrl: buildUrl,
-    isJsonMime: isJsonMime,
-    jsonPreferredMime: jsonPreferredMime,
-    isFileParam: isFileParam,
-    normalizeParams: normalizeParams,
-    buildCollectionParam: buildCollectionParam,
-    applyAuthToRequest: applyAuthToRequest,
-    deserialize: deserialize,
-    callApi: callApi(config),
-    parseDate: parseDate,
-    convertToType: convertToType,
-    constructFromObject: constructFromObject,
-  };
-};
+export class RavenApiClient {
+  config = RavenApiClientConfig({});
+  constructor(options = {}) {
+    this.config = RavenApiClientConfig({
+      ...options,
+    });
+    this.callApi = callApi(this.config);
+  }
+
+  CollectionFormatEnum = CollectionFormatEnum;
+  paramToString = paramToString;
+  buildUrl = buildUrl;
+  isJsonMime = isJsonMime;
+  jsonPreferredMime = jsonPreferredMime;
+  isFileParam = isFileParam;
+  normalizeParams = normalizeParams;
+  buildCollectionParam = buildCollectionParam;
+  applyAuthToRequest = applyAuthToRequest;
+  deserialize = deserialize;
+  callApi = callApi(this.config);
+  parseDate = parseDate;
+  convertToType = convertToType;
+  constructFromObject = constructFromObject;
+}

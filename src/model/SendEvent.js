@@ -18,7 +18,7 @@ import { RavenApiClient } from "../RavenApiClient";
 import { Data } from "./Data";
 import { EventOverride } from "./EventOverride";
 import { User } from "./User";
-
+import { convertToType } from "../utils";
 export class SendEvent {
   constructor(event, user) {
     this.event = event;
@@ -29,16 +29,13 @@ export class SendEvent {
     if (data) {
       obj = obj || new SendEvent();
       if (data.hasOwnProperty("event"))
-        obj.event = RavenApiClient.convertToType(data["event"], "String");
+        obj.event = convertToType(data["event"], "String");
       if (data.hasOwnProperty("user"))
         obj.user = User.constructFromObject(data["user"]);
       if (data.hasOwnProperty("data"))
         obj.data = Data.constructFromObject(data["data"]);
       if (data.hasOwnProperty("scheduled_at"))
-        obj.scheduledAt = RavenApiClient.convertToType(
-          data["scheduled_at"],
-          "String"
-        );
+        obj.scheduledAt = convertToType(data["scheduled_at"], "String");
       if (data.hasOwnProperty("override"))
         obj.override = EventOverride.constructFromObject(data["override"]);
     }

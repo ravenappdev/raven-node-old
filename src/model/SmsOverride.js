@@ -15,7 +15,7 @@
  */
 
 import { RavenApiClient } from "../RavenApiClient";
-
+import { convertToType } from "../utils";
 export class SmsOverride {
   constructor() {}
 
@@ -23,12 +23,9 @@ export class SmsOverride {
     if (data) {
       obj = obj || new SmsOverride();
       if (data.hasOwnProperty("sender"))
-        obj.sender = RavenApiClient.convertToType(data["sender"], "String");
+        obj.sender = convertToType(data["sender"], "String");
       if (data.hasOwnProperty("scheduled_at"))
-        obj.scheduledAt = RavenApiClient.convertToType(
-          data["scheduled_at"],
-          "String"
-        );
+        obj.scheduledAt = convertToType(data["scheduled_at"], "String");
     }
     return obj;
   }

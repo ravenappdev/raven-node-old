@@ -15,7 +15,7 @@
  */
 
 import { RavenApiClient } from "../RavenApiClient";
-
+import { convertToType } from "../utils";
 export class PushOverride {
   constructor() {}
 
@@ -23,10 +23,7 @@ export class PushOverride {
     if (data) {
       obj = obj || new PushOverride();
       if (data.hasOwnProperty("scheduled_at"))
-        obj.scheduledAt = RavenApiClient.convertToType(
-          data["scheduled_at"],
-          "String"
-        );
+        obj.scheduledAt = convertToType(data["scheduled_at"], "String");
     }
     return obj;
   }

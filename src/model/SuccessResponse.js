@@ -15,7 +15,7 @@
  */
 
 import { RavenApiClient } from "../RavenApiClient";
-
+import { convertToType } from "../utils";
 export class SuccessResponse {
   constructor() {}
 
@@ -23,9 +23,9 @@ export class SuccessResponse {
     if (data) {
       obj = obj || new SuccessResponse();
       if (data.hasOwnProperty("success"))
-        obj.success = RavenApiClient.convertToType(data["success"], "Boolean");
+        obj.success = convertToType(data["success"], "Boolean");
       if (data.hasOwnProperty("id"))
-        obj.id = RavenApiClient.convertToType(data["id"], "String");
+        obj.id = convertToType(data["id"], "String");
     }
     return obj;
   }

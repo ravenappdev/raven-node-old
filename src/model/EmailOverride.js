@@ -14,10 +14,9 @@
  *
  */
 
-import { RavenApiClient } from "../RavenApiClient";
 import { Attachments } from "./Attachments";
 import { EmailRecipient } from "./EmailRecipient";
-
+import { convertToType } from "../utils";
 export class EmailOverride {
   constructor() {}
 
@@ -27,16 +26,13 @@ export class EmailOverride {
       if (data.hasOwnProperty("from"))
         obj.from = EmailRecipient.constructFromObject(data["from"]);
       if (data.hasOwnProperty("cc"))
-        obj.cc = RavenApiClient.convertToType(data["cc"], [EmailRecipient]);
+        obj.cc = convertToType(data["cc"], [EmailRecipient]);
       if (data.hasOwnProperty("bcc"))
-        obj.bcc = RavenApiClient.convertToType(data["bcc"], [EmailRecipient]);
+        obj.bcc = convertToType(data["bcc"], [EmailRecipient]);
       if (data.hasOwnProperty("attachments"))
         obj.attachments = Attachments.constructFromObject(data["attachments"]);
       if (data.hasOwnProperty("scheduled_at"))
-        obj.scheduledAt = RavenApiClient.convertToType(
-          data["scheduled_at"],
-          "String"
-        );
+        obj.scheduledAt = convertToType(data["scheduled_at"], "String");
     }
     return obj;
   }

@@ -13,8 +13,7 @@
  * Do not edit the class manually.
  *
  */
-
-import { RavenApiClient } from "../RavenApiClient";
+import { convertToType } from "../utils";
 
 export class ErrorResponse {
   constructor() {}
@@ -23,9 +22,9 @@ export class ErrorResponse {
     if (data) {
       obj = obj || new ErrorResponse();
       if (data.hasOwnProperty("id"))
-        obj.id = RavenApiClient.convertToType(data["id"], "String");
+        obj.id = convertToType(data["id"], "String");
       if (data.hasOwnProperty("error"))
-        obj.error = RavenApiClient.convertToType(data["error"], "String");
+        obj.error = convertToType(data["error"], "String");
     }
     return obj;
   }

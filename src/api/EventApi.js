@@ -15,32 +15,39 @@
  */
 
 import { RavenApiClient } from "../RavenApiClient";
-import { ErrorResponse } from "../model/ErrorResponse";
 import { Response } from "../model/Response";
-import { SendEvent } from "../model/SendEvent";
-import { SendEventBulk } from "../model/SendEventBulk";
-import { SuccessResponse } from "../model/SuccessResponse";
 
 export class EventApi {
   constructor(apiClient) {
-    this.apiClient = apiClient || RavenApiClient();
+    this.apiClient = apiClient || new RavenApiClient();
   }
 
-  sendBulkEventWithHttpInfo({ appId, event }) {
+  sendBulkEventWithHttpInfo({ appId, event, opts }) {
+    opts = opts || {};
     let postBody = event;
 
     // verify the required parameter 'appId' is set
-    if (appId === undefined || appId === null) {
-      throw new Error(
-        "Missing the required parameter 'appId' when calling sendBulkEvent"
-      );
-    }
+    try {
+      if (appId === undefined || appId === null) {
+        throw new Error(
+          "Missing the required parameter 'appId' when calling sendBulkEvent"
+        );
+      }
 
-    // verify the required parameter 'event' is set
-    if (event === undefined || event === null) {
-      throw new Error(
-        "Missing the required parameter 'event' when calling sendBulkEvent"
-      );
+      if (typeof appId !== "string") {
+        throw new Error('Parameter "appId" should be of type "string"');
+      }
+
+      // verify the required parameter 'event' is set
+      if (event === undefined || event === null) {
+        throw new Error(
+          "Missing the required parameter 'event' when calling sendBulkEvent"
+        );
+      }
+    } catch (err) {
+      return new Promise((_, reject) => {
+        reject(err);
+      });
     }
 
     let pathParams = {
@@ -55,8 +62,7 @@ export class EventApi {
     let authNames = ["ApiKeyAuth"];
     let contentTypes = ["application/json"];
     let accepts = ["application/json"];
-    let returnType = SuccessResponse;
-
+    let returnType = Response;
     return this.apiClient.callApi(
       "/v1/apps/{app_id}/events/bulk_send",
       "POST",
@@ -71,29 +77,35 @@ export class EventApi {
       returnType
     );
   }
-  sendBulkEvent({ appId, event }) {
-    return this.sendBulkEventWithHttpInfo({ appId, event }).then(function (
-      response_and_data
-    ) {
-      return response_and_data.data;
-    });
+  sendBulkEvent({ appId, event, opts }) {
+    return this.sendBulkEventWithHttpInfo({ appId, event, opts }).then(
+      function (response_and_data) {
+        return response_and_data.data;
+      }
+    );
   }
   sendEventWithHttpInfo({ appId, event, opts }) {
     opts = opts || {};
     let postBody = event;
 
-    // verify the required parameter 'appId' is set
-    if (appId === undefined || appId === null) {
-      throw new Error(
-        "Missing the required parameter 'appId' when calling sendEvent"
-      );
-    }
+    try {
+      // verify the required parameter 'appId' is set
+      if (appId === undefined || appId === null) {
+        throw new Error(
+          "Missing the required parameter 'appId' when calling sendEvent"
+        );
+      }
 
-    // verify the required parameter 'event' is set
-    if (event === undefined || event === null) {
-      throw new Error(
-        "Missing the required parameter 'event' when calling sendEvent"
-      );
+      // verify the required parameter 'event' is set
+      if (event === undefined || event === null) {
+        throw new Error(
+          "Missing the required parameter 'event' when calling sendEvent"
+        );
+      }
+    } catch (err) {
+      return new Promise((_, reject) => {
+        reject(err);
+      });
     }
 
     let pathParams = {

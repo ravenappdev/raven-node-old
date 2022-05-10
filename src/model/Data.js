@@ -15,14 +15,25 @@
  */
 
 import { RavenApiClient } from "../RavenApiClient";
-
+import {
+  convertToType,
+  constructFromObject as constructObject,
+  parseDate,
+  deserialize,
+  buildUrl,
+  normalizeParams,
+  isFileParam,
+  paramToString,
+  isJsonMime,
+  jsonPreferredMime,
+} from "../utils";
 export class Data {
   constructor() {}
 
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new Data();
-      RavenApiClient.constructFromObject(data, obj, "Object");
+      constructObject(data, obj, "Object");
     }
     return obj;
   }

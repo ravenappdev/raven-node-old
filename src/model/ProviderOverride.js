@@ -16,7 +16,7 @@
 
 import { RavenApiClient } from "../RavenApiClient";
 import { Param } from "./Param";
-
+import { convertToType } from "../utils";
 export class ProviderOverride {
   constructor() {}
 
@@ -24,19 +24,15 @@ export class ProviderOverride {
     if (data) {
       obj = obj || new ProviderOverride();
       if (data.hasOwnProperty("payload"))
-        obj.payload = RavenApiClient.convertToType(data["payload"], {
+        obj.payload = convertToType(data["payload"], {
           String: Object,
         });
       if (data.hasOwnProperty("form_params"))
-        obj.formParams = RavenApiClient.convertToType(data["form_params"], [
-          Param,
-        ]);
+        obj.formParams = convertToType(data["form_params"], [Param]);
       if (data.hasOwnProperty("query_params"))
-        obj.queryParams = RavenApiClient.convertToType(data["query_params"], [
-          Param,
-        ]);
+        obj.queryParams = convertToType(data["query_params"], [Param]);
       if (data.hasOwnProperty("config"))
-        obj.config = RavenApiClient.convertToType(data["config"], {
+        obj.config = convertToType(data["config"], {
           String: "String",
         });
     }
