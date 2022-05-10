@@ -11,7 +11,6 @@ var instance;
 beforeEach(() => {
   const client = new raven.RavenApiClient({
     apiKey: testData["apiKey"],
-    apiKeyPrefix: testData["apiKeyPrefix"],
   });
   instance = new raven.EventApi(client);
 });

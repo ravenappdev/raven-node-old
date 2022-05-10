@@ -1,7 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
+import dotenv from "dotenv";
+
+dotenv.config();
 export const testData = {
-  apiKey: "YXNkaGl3YW1zY2lhdXNuamxxamR3b3ducWlsamRrd3FlcWU=",
-  apiKeyPrefix: "AuthKey",
+  apiKey: process.env.API_KEY,
 
   EventApi: {
     sendBulkEvent: [
