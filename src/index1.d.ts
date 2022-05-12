@@ -1,12 +1,8 @@
-import superagent from "superagent";
-
 interface RavenApiClientConfiguration {
   basePath: string;
   defaultHeaders: {};
   timeout: number;
   cache: boolean;
-  enableCookies: boolean;
-  agent: superagent.agent;
 }
 
 export interface RavenApiClientOptions {
@@ -16,13 +12,7 @@ export interface RavenApiClientOptions {
 
 export class RavenApiClient {
   constructor(options: RavenApiClientOptions);
-  CollectionFormatEnum: {
-    CSV: string;
-    SSV: string;
-    TSV: string;
-    PIPES: string;
-    MULTI: string;
-  };
+
   parseDate: (str: string) => Date;
   convertToType: (data: object, type: string) => object;
   constructFromObject: (data: object, obj: object, itemType: any) => void;
@@ -32,7 +22,6 @@ export class RavenApiClient {
   jsonPreferredMime: (contentTypes: string) => string;
   isFileParam: (param: object) => boolean;
   normalizeParams: (params: object) => {};
-  buildCollectionParam: (param: any, collectionFormat: any) => any;
   applyAuthToRequest: (request: any, authNames: any) => void;
   deserialize: (response: any, returnType: any) => any;
   callApi: (

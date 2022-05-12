@@ -20,44 +20,46 @@ describe("", function () {
     describe("sendBulkEvent", function () {
       const tests = testData["EventApi"]["sendBulkEvent"];
       tests.forEach((test) => {
-        // console.log(test);
         it(test["name"], function (done) {
           var appId = test["input"]["appId"];
           var event = test["input"]["event"];
-          // console.log(event);
+
           var opts = {
             idempotencyKey: uuidv4(),
           };
-          // console.log({ appId, event, opts });
+
           instance
             .sendBulk({ appId, event, opts })
-            .then(function (data) {
-              expect(data.success).to.be.equal(
-                test["output"]["success"]["value"]
-              );
-              expect(data.id)
-                .to.be.a(test["output"]["id"]["type"])
-                .length.greaterThan(0);
-              expect(data.error).to.be.equal(undefined);
-              done();
+            .then(function (response) {
+              try {
+                expect(response.data.success).to.be.equal(
+                  test["output"]["response"]["data"]["success"]
+                );
+                expect(response.data.id).to.be.a("string");
+                done();
+              } catch (err) {
+                done(err);
+              }
             })
             .catch((err) => {
-              // console.log(err.response.req);
-              expect(err).to.be.a("error");
               expect(err.message).to.be.equal(
                 test["output"]["error"]["message"]
               );
-              if (err.data && Object.keys(err.data).length) {
-                expect(err.data.success).to.be.equal(
-                  test["output"]["error"]["data"]["success"]
+              if (
+                err.response &&
+                err.response.data &&
+                Object.keys(err.response.data).length
+              ) {
+                expect(err.response.data).to.be.deep.equal(
+                  test["output"]["error"]["response"]["data"]
                 );
-                expect(err.data.error).to.be.equal(
-                  test["output"]["error"]["data"]["error"]
+                expect(err.response.status).to.be.equal(
+                  test["output"]["error"]["response"]["status"]
                 );
               } else {
-                expect(err.data).to.be.equal(undefined);
+                expect(err.response).to.be.equal(undefined);
               }
-              expect(err.status).to.be.equal(test["output"]["error"]["status"]);
+
               done();
             })
             .catch((err) => {
@@ -70,44 +72,47 @@ describe("", function () {
     describe("sendEvent", function () {
       const tests = testData["EventApi"]["sendEvent"];
       tests.forEach((test) => {
-        // console.log(test);
         it(test["name"], function (done) {
           var appId = test["input"]["appId"];
           var event = test["input"]["event"];
-          // console.log(event);
+
           var opts = {
             idempotencyKey: uuidv4(),
           };
-          // console.log({ appId, event, opts });
+
           instance
             .send({ appId, event, opts })
-            .then(function (data) {
-              expect(data.success).to.be.equal(
-                test["output"]["success"]["value"]
-              );
-              expect(data.id)
-                .to.be.a(test["output"]["id"]["type"])
-                .length.greaterThan(0);
-              expect(data.error).to.be.equal(undefined);
-              done();
+            .then(function (response) {
+              try {
+                expect(response.data.success).to.be.equal(
+                  test["output"]["response"]["data"]["success"]
+                );
+                expect(response.data.id).to.be.a("string");
+                done();
+              } catch (err) {
+                done(err);
+              }
             })
             .catch((err) => {
               // console.log(err.message);
-              expect(err).to.be.a("error");
               expect(err.message).to.be.equal(
                 test["output"]["error"]["message"]
               );
-              if (err.data && Object.keys(err.data).length) {
-                expect(err.data.success).to.be.equal(
-                  test["output"]["error"]["data"]["success"]
+              if (
+                err.response &&
+                err.response.data &&
+                Object.keys(err.response.data).length
+              ) {
+                expect(err.response.data).to.be.deep.equal(
+                  test["output"]["error"]["response"]["data"]
                 );
-                expect(err.data.error).to.be.equal(
-                  test["output"]["error"]["data"]["error"]
+                expect(err.response.status).to.be.equal(
+                  test["output"]["error"]["response"]["status"]
                 );
               } else {
-                expect(err.data).to.be.equal(undefined);
+                expect(err.response).to.be.equal(undefined);
               }
-              expect(err.status).to.be.equal(test["output"]["error"]["status"]);
+
               done();
             })
             .catch((err) => {

@@ -163,12 +163,14 @@ export const testData = {
           },
         },
         output: {
-          success: {
-            type: "bool",
-            value: true,
-          },
-          id: {
-            type: "string",
+          response: {
+            status: 200,
+            data: {
+              success: true,
+              id: {
+                type: "string",
+              },
+            },
           },
         },
       },
@@ -206,11 +208,14 @@ export const testData = {
           error: {
             type: "error",
             message: "event not found",
-            data: {
-              success: false,
-              error: "event not found",
+
+            response: {
+              status: 404,
+              data: {
+                success: false,
+                error: "event not found",
+              },
             },
-            status: 404,
           },
         },
       },
@@ -285,11 +290,14 @@ export const testData = {
           error: {
             type: "error",
             message: "app not found",
-            data: {
-              success: false,
-              error: "app not found",
+
+            response: {
+              status: 404,
+              data: {
+                success: false,
+                error: "app not found",
+              },
             },
-            status: 404,
           },
         },
       },
@@ -318,8 +326,11 @@ export const testData = {
         output: {
           error: {
             type: "error",
-            message: "Unprocessable Entity",
-            status: 422,
+            message: "Request failed with status code 422",
+            response: {
+              status: 422,
+              data: { errors: ["event must not be blank"] },
+            },
           },
         },
       },
@@ -349,8 +360,11 @@ export const testData = {
         output: {
           error: {
             type: "error",
-            message: "Bad Request",
-            status: 400,
+            message: "Request failed with status code 400",
+            response: {
+              status: 400,
+              data: { code: 400, message: "Unable to process JSON" },
+            },
           },
         },
       },
@@ -369,8 +383,11 @@ export const testData = {
         output: {
           error: {
             type: "error",
-            message: "Unprocessable Entity",
-            status: 422,
+            message: "Request failed with status code 422",
+            response: {
+              status: 422,
+              data: { errors: ["batch must not be empty"] },
+            },
           },
         },
       },
@@ -396,8 +413,11 @@ export const testData = {
         output: {
           error: {
             type: "error",
-            message: "Unprocessable Entity",
-            status: 422,
+            message: "Request failed with status code 422",
+            response: {
+              status: 422,
+              data: { errors: ["batch[0].user must not be null"] },
+            },
           },
         },
       },
@@ -456,12 +476,14 @@ export const testData = {
           },
         },
         output: {
-          success: {
-            type: "bool",
-            value: true,
-          },
-          id: {
-            type: "string",
+          response: {
+            status: 200,
+            data: {
+              success: true,
+              id: {
+                type: "string",
+              },
+            },
           },
         },
       },
@@ -495,11 +517,14 @@ export const testData = {
           error: {
             type: "error",
             message: "event not found",
-            data: {
-              success: false,
-              error: "event not found",
+
+            response: {
+              status: 404,
+              data: {
+                success: false,
+                error: "event not found",
+              },
             },
-            status: 404,
           },
         },
       },
@@ -568,11 +593,14 @@ export const testData = {
           error: {
             type: "error",
             message: "app not found",
-            data: {
-              success: false,
-              error: "app not found",
+
+            response: {
+              status: 404,
+              data: {
+                success: false,
+                error: "app not found",
+              },
             },
-            status: 404,
           },
         },
       },
@@ -597,8 +625,11 @@ export const testData = {
         output: {
           error: {
             type: "error",
-            message: "Unprocessable Entity",
-            status: 422,
+            message: "Request failed with status code 422",
+            response: {
+              status: 422,
+              data: { errors: ["event must not be blank"] },
+            },
           },
         },
       },
@@ -625,8 +656,11 @@ export const testData = {
         output: {
           error: {
             type: "error",
-            message: "Bad Request",
-            status: 400,
+            message: "Request failed with status code 400",
+            response: {
+              status: 400,
+              data: { code: 400, message: "Unable to process JSON" },
+            },
           },
         },
       },
@@ -644,8 +678,11 @@ export const testData = {
         output: {
           error: {
             type: "error",
-            message: "Unprocessable Entity",
-            status: 422,
+            message: "Request failed with status code 422",
+            response: {
+              status: 422,
+              data: { errors: ["user must not be null"] },
+            },
           },
         },
       },
@@ -668,8 +705,13 @@ export const testData = {
         output: {
           error: {
             type: "error",
-            message: "Unprocessable Entity",
-            status: 422,
+            message: "Request failed with status code 422",
+            response: {
+              status: 422,
+              data: {
+                errors: ["user must not be null"],
+              },
+            },
           },
         },
       },

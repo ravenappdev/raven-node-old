@@ -79,7 +79,7 @@ export const deserialize = (response, returnType) => {
 
   // Rely on SuperAgent for parsing response body.
   // See http://visionmedia.github.io/superagent/#parsing-response-bodies
-  var data = response.body;
+  var data = response.data;
   if (
     data == null ||
     (typeof data === "object" &&
@@ -154,12 +154,12 @@ export const paramToString = (param) => {
   return param.toString();
 };
 
-export const buildUrl = ({ basePath, path, pathParams }) => {
+export const buildUrl = ({ path, pathParams }) => {
   if (!path.match(/^\//)) {
     path = "/" + path;
   }
 
-  var url = basePath + path;
+  var url = path;
   url = url.replace(/\{([\w-]+)\}/g, (fullMatch, key) => {
     var value;
     if (pathParams.hasOwnProperty(key)) {

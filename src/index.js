@@ -59,8 +59,8 @@ const sendBulk =
   (apiClient) =>
   ({ appId, event, opts }) => {
     return sendBulkEventWithHttpInfo({ appId, event, opts }, apiClient).then(
-      function (response_and_data) {
-        return response_and_data.data;
+      function (response) {
+        return response;
       }
     );
   };
@@ -120,8 +120,8 @@ const send =
   (apiClient) =>
   ({ appId, event, opts }) => {
     return sendEventWithHttpInfo({ appId, event, opts }, apiClient).then(
-      function (response_and_data) {
-        return response_and_data.data;
+      function (response) {
+        return response;
       }
     );
   };

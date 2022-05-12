@@ -14,7 +14,7 @@
  *
  */
 
-import superagent from "superagent";
+import axios from "axios";
 import querystring from "querystring";
 import {
   convertToType,
@@ -30,18 +30,6 @@ import {
 } from "./utils";
 const DEFAULTS = {
   BASE_URL: "https://api.ravenapp.dev".replace(/\/+$/, ""),
-};
-
-const CollectionFormatEnum = {
-  CSV: ",",
-
-  SSV: " ",
-
-  TSV: "\t",
-
-  PIPES: "|",
-
-  MULTI: "multi",
 };
 
 const ClientConfig = (config) => {
@@ -71,37 +59,7 @@ const ClientConfig = (config) => {
     cache: true,
 
     defaultHeaders: {},
-
-    /**
-     * Used to save and return cookies in a node.js (non-browser) setting,
-     * if enableCookies is set to true.
-     * @type {Boolean}
-     * @default true
-     */
-    enableCookies: true,
-    agent: config["agent"] || new superagent.agent(),
   };
-};
-
-const buildCollectionParam = (param, collectionFormat) => {
-  if (param == null) {
-    return null;
-  }
-  switch (collectionFormat) {
-    case "csv":
-      return param.map(paramToString).join(",");
-    case "ssv":
-      return param.map(paramToString).join(" ");
-    case "tsv":
-      return param.map(paramToString).join("\t");
-    case "pipes":
-      return param.map(paramToString).join("|");
-    case "multi":
-      //return the array directly as SuperAgent will handle it as expected
-      return param.map(paramToString);
-    default:
-      throw new Error("Unknown collection format: " + collectionFormat);
-  }
 };
 
 const applyAuthToRequest = (request, authNames, authentications) => {
@@ -110,7 +68,10 @@ const applyAuthToRequest = (request, authNames, authentications) => {
     switch (auth.type) {
       case "basic":
         if (auth.username || auth.password) {
-          request.auth(auth.username || "", auth.password || "");
+          request.auth = {
+            username: auth.username || "",
+            password: auth.password || "",
+          };
         }
 
         break;
@@ -124,18 +85,19 @@ const applyAuthToRequest = (request, authNames, authentications) => {
           }
 
           if (auth["in"] === "header") {
-            request.set(data);
+            request.headers = { ...request.header, ...data };
           } else {
-            request.query(data);
+            request.params = { ...request.params, ...data };
           }
         }
-
         break;
       case "oauth2":
         if (auth.accessToken) {
-          request.set({ Authorization: "Bearer " + auth.accessToken });
+          request.headers = {
+            ...request.headers,
+            Authorization: "Bearer " + auth.accessToken,
+          };
         }
-
         break;
       default:
         throw new Error("Unknown authentication type: " + auth.type);
@@ -143,15 +105,10 @@ const applyAuthToRequest = (request, authNames, authentications) => {
   });
 };
 
-const callApi = ({
-  cache,
-  basePath,
-  authentications,
-  defaultHeaders,
-  timeout,
-  enableCookies,
-  agent,
-}) => {
+const callApi = (
+  { cache, authentications, defaultHeaders, timeout },
+  axiosInstance
+) => {
   return (
     path,
     httpMethod,
@@ -165,8 +122,14 @@ const callApi = ({
     accepts,
     returnType
   ) => {
-    var url = buildUrl({ basePath, path, pathParams });
-    var request = superagent(httpMethod, url);
+    var url = buildUrl({ path, pathParams });
+    // var request = superagent(httpMethod, url);
+    const request = {
+      url: url,
+      method: httpMethod,
+      headers: { ...defaultHeaders, ...normalizeParams(headerParams) },
+      params: { ...pathParams },
+    };
 
     // apply authentications
     applyAuthToRequest(request, authNames, authentications);
@@ -176,93 +139,58 @@ const callApi = ({
       queryParams["_"] = new Date().getTime();
     }
 
-    request.query(normalizeParams(queryParams));
-
-    // set header parameters
-    request.set(defaultHeaders).set(normalizeParams(headerParams));
-
-    // // set requestAgent if it is set by user
-    // if (requestAgent) {
-    //   request.agent(requestAgent);
-    // }
+    request.params = { ...request.params, ...normalizeParams(queryParams) };
 
     // set request timeout
-    request.timeout(timeout);
+    request.timeout = timeout;
 
     var contentType = jsonPreferredMime(contentTypes);
-    if (contentType) {
-      // Issue with superagent and multipart/form-data (https://github.com/visionmedia/superagent/issues/746)
-      if (contentType != "multipart/form-data") {
-        request.type(contentType);
-      }
-    } else if (!request.header["Content-Type"]) {
-      request.type("application/json");
-    }
+    request.headers["Content-Type"] = contentType || "application/json";
 
     if (contentType === "application/x-www-form-urlencoded") {
-      request.send(querystring.stringify(normalizeParams(formParams)));
+      request.data = querystring.stringify(normalizeParams(formParams));
     } else if (contentType == "multipart/form-data") {
       var _formParams = normalizeParams(formParams);
+      const data = {};
       for (var key in _formParams) {
         if (_formParams.hasOwnProperty(key)) {
           if (isFileParam(_formParams[key])) {
             // file field
-            request.attach(key, _formParams[key]);
+            data[key] = _formParams[key];
           } else {
-            request.field(key, _formParams[key]);
+            data[key] = _formParams[key];
           }
         }
       }
+      request.data = data;
     } else if (bodyParam) {
-      request.send(bodyParam);
+      request.data = bodyParam;
     }
 
     var accept = jsonPreferredMime(accepts);
     if (accept) {
-      request.accept(accept);
+      request.headers["Accept"] = accept;
     }
 
     if (returnType === "Blob") {
-      request.responseType("blob");
+      request.responseType = "blob";
     } else if (returnType === "String") {
-      request.responseType("string");
-    }
-
-    // Attach previously saved cookies, if enabled
-    if (enableCookies) {
-      if (typeof window === "undefined") {
-        agent.jar.setCookie(agent.jar.getCookies().toString());
-      } else {
-        request.withCredentials();
-      }
+      request.responseType = "string";
     }
     return new Promise((resolve, reject) => {
-      request.end((error, response) => {
-        if (error) {
-          var data = deserialize(response, returnType);
-          if (!data || !Object.keys(data).length) {
-            data = undefined;
-          } else {
-            if (data.error && typeof data.error === "string") {
-              error.message = data.error;
-            }
-            error.data = data;
+      axiosInstance
+        .request(request)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          var res = error.response;
+          if (res && res.data && res.data.error) {
+            error.message = res.data.error;
           }
+
           reject(error);
-        } else {
-          try {
-            var data = deserialize(response, returnType);
-            // if (enableCookies && typeof window === "undefined") {
-            //   console.log(response);
-            //   // agent.setCookies(response);
-            // }
-            if (!data) data = undefined;
-            resolve({ data, response });
-          } catch (err) {
-            reject(err);
-          }
-        }
-      });
+        });
     });
   };
 };
@@ -271,19 +199,21 @@ export const Client = (options = {}) => {
   const config = ClientConfig({
     ...options,
   });
-
+  const requestConfig = {
+    baseURL: config["basePath"] || DEFAULTS.BASE_URL,
+    timeout: config["timeout"],
+  };
+  const instance = axios.create(requestConfig);
   return {
-    CollectionFormatEnum: CollectionFormatEnum,
     paramToString: paramToString,
     buildUrl: buildUrl,
     isJsonMime: isJsonMime,
     jsonPreferredMime: jsonPreferredMime,
     isFileParam: isFileParam,
     normalizeParams: normalizeParams,
-    buildCollectionParam: buildCollectionParam,
     applyAuthToRequest: applyAuthToRequest,
     deserialize: deserialize,
-    callApi: callApi(config),
+    callApi: callApi(config, instance),
     parseDate: parseDate,
     convertToType: convertToType,
     constructFromObject: constructFromObject,
