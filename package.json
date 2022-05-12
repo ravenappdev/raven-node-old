@@ -1,9 +1,10 @@
 {
-  "name": "raven_api",
+  "name": "@ravenappdev/raven_api",
   "version": "1.0.0",
   "description": "",
   "license": "MIT",
   "main": "src//index.js",
+  "repository": "git://github.com/ravenappdev/raven-nodejs-sdk.git",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive"
   },
