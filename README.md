@@ -62,7 +62,7 @@ module: {
 
 # Requirements
 
-You will need to get a Courier API key to get started. You can sign up and create one for free at courier.com.
+You will need to get a Raven API key to get started. You can sign up and create one for free at [ravenapp.dev](https://ravenapp.dev/).
 
 # Getting Started
 
