@@ -14,7 +14,6 @@
  *
  */
 
-import { RavenApiClient } from "../RavenApiClient";
 import { Data } from "./Data";
 import { EventOverride } from "./EventOverride";
 import { User } from "./User";

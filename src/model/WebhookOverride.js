@@ -14,7 +14,6 @@
  *
  */
 
-import { RavenApiClient } from "../RavenApiClient";
 import { convertToType } from "../utils";
 export class WebhookOverride {
   constructor() {}
