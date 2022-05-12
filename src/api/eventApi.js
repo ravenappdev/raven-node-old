@@ -1,4 +1,3 @@
-import { Response } from "../model/Response";
 function sendBulkEventWithHttpInfo({ appId, event, opts }, apiClient) {
   opts = opts || {};
   let postBody = event;
@@ -39,7 +38,7 @@ function sendBulkEventWithHttpInfo({ appId, event, opts }, apiClient) {
   let authNames = ["ApiKeyAuth"];
   let contentTypes = ["application/json"];
   let accepts = ["application/json"];
-  let returnType = Response;
+  let returnType = null;
   return apiClient.callApi(
     "/v1/apps/{app_id}/events/bulk_send",
     "POST",
@@ -99,7 +98,7 @@ function sendEventWithHttpInfo({ appId, event, opts }, apiClient) {
   let authNames = ["ApiKeyAuth"];
   let contentTypes = ["application/json"];
   let accepts = ["application/json"];
-  let returnType = Response;
+  let returnType = null;
 
   return apiClient.callApi(
     "/v1/apps/{app_id}/events/send",

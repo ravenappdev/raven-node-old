@@ -2,16 +2,16 @@
 
 All URIs are relative to *https://api.ravenapp.dev*
 
-| Method                                         | HTTP request                                | Description                                          |
-| ---------------------------------------------- | ------------------------------------------- | ---------------------------------------------------- |
-| [**sendBulkEvent**](EventApi.md#sendBulkEvent) | **POST** /v1/apps/{app_id}/events/bulk_send | sends the event in bulk to all the clients specified |
-| [**sendEvent**](EventApi.md#sendEvent)         | **POST** /v1/apps/{app_id}/events/send      | sends the event to the client specified              |
+| Method                               | HTTP request                                | Description                                          |
+| ------------------------------------ | ------------------------------------------- | ---------------------------------------------------- |
+| [**sendBulk**](EventApi.md#sendBulk) | **POST** /v1/apps/{app_id}/events/bulk_send | sends the event in bulk to all the clients specified |
+| [**send**](EventApi.md#send)         | **POST** /v1/apps/{app_id}/events/send      | sends the event to the client specified              |
 
-<a name="sendBulkEvent"></a>
+<a name="sendBulk"></a>
 
-# **sendBulkEvent**
+# **sendBulk**
 
-> Response sendBulkEvent(appId, event, opts)
+> Response sendBulk({appId, event, opts})
 
 sends the event in bulk to all the clients specified
 
@@ -20,30 +20,37 @@ This API will send the event in bulk to the clients specified
 ### Example
 
 ```javascript
-import {raven} from 'raven_api';
-let defaultClient = raven..instance;
+import { RavenClient } from "raven";
 
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
-
-let apiInstance = new raven.EventApi();
-
-let appId = "appId_example"; // String | app id of raven app
-
-let event = new raven.SendEventBulk(); // SendEventBulk | the body for the event that has to be triggered
-
-let opts = {
-  'idempotencyKey': "idempotencyKey_example" // String | idempotency key of api
+const config = {
+  // Configure API key authorization
+  apiKey: "YOUR API KEY",
+  /*
+   //uncomment of you want to override the base path
+  basePath: "YOU BASE PATH"
+  */
 };
-apiInstance.sendBulkEvent(appId, event, opts).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
+const raven = RavenClient(config);
 
+var appId = "appId_example"; // {String} app id of raven app
+
+var event = {
+  //event payload for bulk event to be trggered
+};
+
+var opts = {
+  //other options
+  idempotencyKey: uuidv4(),
+};
+
+raven.sendBulk({ appId, event, opts }).then(
+  function (response) {
+    console.log("API called successfully. Returned response: " + response);
+  },
+  function (error) {
+    console.error(error);
+  }
+);
 ```
 
 ### Parameters
@@ -67,11 +74,11 @@ apiInstance.sendBulkEvent(appId, event, opts).then((data) => {
 - **Content-Type**: application/json
 - **Accept**: application/json
 
-<a name="sendEvent"></a>
+<a name="send"></a>
 
-# **sendEvent**
+# **send**
 
-> Response sendEvent(appId, event, opts)
+> Response send({appId, event, opts})
 
 sends the event to the client specified
 
@@ -80,30 +87,37 @@ This API will send the event to the client specified
 ### Example
 
 ```javascript
-import {raven} from 'raven_api';
-let defaultClient = raven..instance;
+import { RavenClient } from "raven";
 
-// Configure API key authorization: ApiKeyAuth
-let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
-ApiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.apiKeyPrefix = 'Token';
-
-let apiInstance = new raven.EventApi();
-
-let appId = "appId_example"; // String | app id of raven app
-
-let event = new raven.SendEvent(); // SendEvent | the body for the event that has to be triggered
-
-let opts = {
-  'idempotencyKey': "idempotencyKey_example" // String | idempotency key of api
+const config = {
+  // Configure API key authorization
+  apiKey: "YOUR API KEY",
+  /*
+   //uncomment of you want to override the base path
+  basePath: "YOU BASE PATH"
+  */
 };
-apiInstance.sendEvent(appId, event, opts).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
+const raven = RavenClient(config);
 
+var appId = "appId_example"; // {String} app id of raven app
+
+var event = {
+  //event payload for bulk event to be trggered
+};
+
+var opts = {
+  //other options
+  idempotencyKey: uuidv4(),
+};
+
+raven.send({ appId, event, opts }).then(
+  function (response) {
+    console.log("API called successfully. Returned response: " + response);
+  },
+  function (error) {
+    console.error(error);
+  }
+);
 ```
 
 ### Parameters

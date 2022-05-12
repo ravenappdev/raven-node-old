@@ -1,8 +1,7 @@
 # raven.WebhookOverride
 
 ## Properties
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**scheduledAt** | **String** |  | [optional] 
 
-
+| Name            | Type       | Description | Notes      |
+| --------------- | ---------- | ----------- | ---------- |
+| **scheduledAt** | **String** |             | [optional] |
