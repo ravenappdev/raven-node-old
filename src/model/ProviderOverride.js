@@ -14,7 +14,6 @@
  *
  */
 
-import { RavenApiClient } from "../RavenApiClient";
 import { Param } from "./Param";
 import { convertToType } from "../utils";
 export class ProviderOverride {

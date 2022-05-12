@@ -44,7 +44,7 @@ const CollectionFormatEnum = {
   MULTI: "multi",
 };
 
-const RavenApiClientConfig = (config) => {
+const ClientConfig = (config) => {
   return {
     basePath: config["basePath"] || DEFAULTS.BASE_URL,
     authentications: {
@@ -240,10 +240,12 @@ const callApi = ({
       request.end((error, response) => {
         if (error) {
           var data = deserialize(response, returnType);
-          if (!data || !Object.keys(data).length) data = undefined;
-          else {
-            if (data.error && typeof data.error === "string")
+          if (!data || !Object.keys(data).length) {
+            data = undefined;
+          } else {
+            if (data.error && typeof data.error === "string") {
               error.message = data.error;
+            }
             error.data = data;
           }
           reject(error);
@@ -265,27 +267,25 @@ const callApi = ({
   };
 };
 
-export class RavenApiClient {
-  config = RavenApiClientConfig({});
-  constructor(options = {}) {
-    this.config = RavenApiClientConfig({
-      ...options,
-    });
-    this.callApi = callApi(this.config);
-  }
+export const Client = (options = {}) => {
+  const config = ClientConfig({
+    ...options,
+  });
 
-  CollectionFormatEnum = CollectionFormatEnum;
-  paramToString = paramToString;
-  buildUrl = buildUrl;
-  isJsonMime = isJsonMime;
-  jsonPreferredMime = jsonPreferredMime;
-  isFileParam = isFileParam;
-  normalizeParams = normalizeParams;
-  buildCollectionParam = buildCollectionParam;
-  applyAuthToRequest = applyAuthToRequest;
-  deserialize = deserialize;
-  callApi = callApi(this.config);
-  parseDate = parseDate;
-  convertToType = convertToType;
-  constructFromObject = constructFromObject;
-}
+  return {
+    CollectionFormatEnum: CollectionFormatEnum,
+    paramToString: paramToString,
+    buildUrl: buildUrl,
+    isJsonMime: isJsonMime,
+    jsonPreferredMime: jsonPreferredMime,
+    isFileParam: isFileParam,
+    normalizeParams: normalizeParams,
+    buildCollectionParam: buildCollectionParam,
+    applyAuthToRequest: applyAuthToRequest,
+    deserialize: deserialize,
+    callApi: callApi(config),
+    parseDate: parseDate,
+    convertToType: convertToType,
+    constructFromObject: constructFromObject,
+  };
+};

@@ -9,10 +9,9 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 var instance;
 beforeEach(() => {
-  const client = new raven.RavenApiClient({
+  instance = raven.RavenClient({
     apiKey: testData["apiKey"],
   });
-  instance = new raven.EventApi(client);
 });
 
 describe("", function () {
@@ -24,17 +23,14 @@ describe("", function () {
         // console.log(test);
         it(test["name"], function (done) {
           var appId = test["input"]["appId"];
-          var event = new raven.SendEventBulk(
-            test["input"]["event"]["event"],
-            test["input"]["event"]["batch"]
-          );
+          var event = test["input"]["event"];
           // console.log(event);
           var opts = {
             idempotencyKey: uuidv4(),
           };
           // console.log({ appId, event, opts });
           instance
-            .sendBulkEvent({ appId, event, opts })
+            .sendBulk({ appId, event, opts })
             .then(function (data) {
               expect(data.success).to.be.equal(
                 test["output"]["success"]["value"]
@@ -77,17 +73,14 @@ describe("", function () {
         // console.log(test);
         it(test["name"], function (done) {
           var appId = test["input"]["appId"];
-          var event = new raven.SendEvent(
-            test["input"]["event"]["event"],
-            test["input"]["event"]["user"]
-          );
+          var event = test["input"]["event"];
           // console.log(event);
           var opts = {
             idempotencyKey: uuidv4(),
           };
           // console.log({ appId, event, opts });
           instance
-            .sendEvent({ appId, event, opts })
+            .send({ appId, event, opts })
             .then(function (data) {
               expect(data.success).to.be.equal(
                 test["output"]["success"]["value"]

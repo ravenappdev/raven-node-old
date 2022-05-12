@@ -14,19 +14,7 @@
  *
  */
 
-import { RavenApiClient } from "../RavenApiClient";
-import {
-  convertToType,
-  constructFromObject,
-  parseDate,
-  deserialize,
-  buildUrl,
-  normalizeParams,
-  isFileParam,
-  paramToString,
-  isJsonMime,
-  jsonPreferredMime,
-} from "../utils";
+import { convertToType } from "../utils";
 export class Attachments {
   constructor() {}
 
