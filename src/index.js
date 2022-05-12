@@ -55,7 +55,7 @@ function sendBulkEventWithHttpInfo({ appId, event, opts }, apiClient) {
     returnType
   );
 }
-const sendBulkEvent =
+const sendBulk =
   (apiClient) =>
   ({ appId, event, opts }) => {
     return sendBulkEventWithHttpInfo({ appId, event, opts }, apiClient).then(
@@ -116,7 +116,7 @@ function sendEventWithHttpInfo({ appId, event, opts }, apiClient) {
     returnType
   );
 }
-const sendEvent =
+const send =
   (apiClient) =>
   ({ appId, event, opts }) => {
     return sendEventWithHttpInfo({ appId, event, opts }, apiClient).then(
@@ -128,5 +128,5 @@ const sendEvent =
 
 export const RavenClient = (options = {}) => {
   const apiClient = Client(options);
-  return { send: sendEvent(apiClient), sendBulk: sendBulkEvent(apiClient) };
+  return { send: send(apiClient), sendBulk: sendBulk(apiClient) };
 };
