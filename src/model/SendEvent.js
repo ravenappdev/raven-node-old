@@ -33,8 +33,8 @@ export class SendEvent {
         obj.user = User.constructFromObject(data["user"]);
       if (data.hasOwnProperty("data"))
         obj.data = Data.constructFromObject(data["data"]);
-      if (data.hasOwnProperty("scheduled_at"))
-        obj.scheduledAt = convertToType(data["scheduled_at"], "String");
+      if (data.hasOwnProperty("schedule_at"))
+        obj.scheduleAt = convertToType(data["schedule_at"], "String");
       if (data.hasOwnProperty("override"))
         obj.override = EventOverride.constructFromObject(data["override"]);
     }
@@ -65,12 +65,12 @@ export class SendEvent {
     this.data = data;
   }
 
-  getScheduledAt() {
-    return this.scheduledAt;
+  getscheduleAt() {
+    return this.scheduleAt;
   }
 
-  setScheduledAt(scheduledAt) {
-    this.scheduledAt = scheduledAt;
+  setscheduleAt(scheduleAt) {
+    this.scheduleAt = scheduleAt;
   }
 
   getOverride() {
@@ -88,6 +88,6 @@ SendEvent.prototype.user = undefined;
 
 SendEvent.prototype.data = undefined;
 
-SendEvent.prototype.scheduledAt = undefined;
+SendEvent.prototype.scheduleAt = undefined;
 
 SendEvent.prototype.override = undefined;

@@ -23,8 +23,8 @@ export class SmsOverride {
       obj = obj || new SmsOverride();
       if (data.hasOwnProperty("sender"))
         obj.sender = convertToType(data["sender"], "String");
-      if (data.hasOwnProperty("scheduled_at"))
-        obj.scheduledAt = convertToType(data["scheduled_at"], "String");
+      if (data.hasOwnProperty("schedule_at"))
+        obj.scheduleAt = convertToType(data["schedule_at"], "String");
     }
     return obj;
   }
@@ -37,15 +37,15 @@ export class SmsOverride {
     this.sender = sender;
   }
 
-  getScheduledAt() {
-    return this.scheduledAt;
+  getscheduleAt() {
+    return this.scheduleAt;
   }
 
-  setScheduledAt(scheduledAt) {
-    this.scheduledAt = scheduledAt;
+  setscheduleAt(scheduleAt) {
+    this.scheduleAt = scheduleAt;
   }
 }
 
 SmsOverride.prototype.sender = undefined;
 
-SmsOverride.prototype.scheduledAt = undefined;
+SmsOverride.prototype.scheduleAt = undefined;

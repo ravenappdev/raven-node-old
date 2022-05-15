@@ -31,8 +31,8 @@ export class EmailOverride {
         obj.bcc = convertToType(data["bcc"], [EmailRecipient]);
       if (data.hasOwnProperty("attachments"))
         obj.attachments = Attachments.constructFromObject(data["attachments"]);
-      if (data.hasOwnProperty("scheduled_at"))
-        obj.scheduledAt = convertToType(data["scheduled_at"], "String");
+      if (data.hasOwnProperty("schedule_at"))
+        obj.scheduleAt = convertToType(data["schedule_at"], "String");
     }
     return obj;
   }
@@ -69,12 +69,12 @@ export class EmailOverride {
     this.attachments = attachments;
   }
 
-  getScheduledAt() {
-    return this.scheduledAt;
+  getscheduleAt() {
+    return this.scheduleAt;
   }
 
-  setScheduledAt(scheduledAt) {
-    this.scheduledAt = scheduledAt;
+  setscheduleAt(scheduleAt) {
+    this.scheduleAt = scheduleAt;
   }
 }
 
@@ -86,4 +86,4 @@ EmailOverride.prototype.bcc = undefined;
 
 EmailOverride.prototype.attachments = undefined;
 
-EmailOverride.prototype.scheduledAt = undefined;
+EmailOverride.prototype.scheduleAt = undefined;

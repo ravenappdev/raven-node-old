@@ -21,19 +21,19 @@ export class SlackOverride {
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new SlackOverride();
-      if (data.hasOwnProperty("scheduled_at"))
-        obj.scheduledAt = convertToType(data["scheduled_at"], "String");
+      if (data.hasOwnProperty("schedule_at"))
+        obj.scheduleAt = convertToType(data["schedule_at"], "String");
     }
     return obj;
   }
 
-  getScheduledAt() {
-    return this.scheduledAt;
+  getscheduleAt() {
+    return this.scheduleAt;
   }
 
-  setScheduledAt(scheduledAt) {
-    this.scheduledAt = scheduledAt;
+  setscheduleAt(scheduleAt) {
+    this.scheduleAt = scheduleAt;
   }
 }
 
-SlackOverride.prototype.scheduledAt = undefined;
+SlackOverride.prototype.scheduleAt = undefined;

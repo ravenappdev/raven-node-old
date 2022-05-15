@@ -74,10 +74,6 @@ import { RavenClient } from "raven";
 const config = {
   // Configure API key authorization
   apiKey: "YOUR API KEY",
-  /*
-   //uncomment of you want to override the base path
-  basePath: "YOU BASE PATH"
-  */
 };
 const raven = RavenClient(config);
 

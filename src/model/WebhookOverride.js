@@ -21,19 +21,19 @@ export class WebhookOverride {
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new WebhookOverride();
-      if (data.hasOwnProperty("scheduled_at"))
-        obj.scheduledAt = convertToType(data["scheduled_at"], "String");
+      if (data.hasOwnProperty("schedule_at"))
+        obj.scheduleAt = convertToType(data["schedule_at"], "String");
     }
     return obj;
   }
 
-  getScheduledAt() {
-    return this.scheduledAt;
+  getscheduleAt() {
+    return this.scheduleAt;
   }
 
-  setScheduledAt(scheduledAt) {
-    this.scheduledAt = scheduledAt;
+  setscheduleAt(scheduleAt) {
+    this.scheduleAt = scheduleAt;
   }
 }
 
-WebhookOverride.prototype.scheduledAt = undefined;
+WebhookOverride.prototype.scheduleAt = undefined;
