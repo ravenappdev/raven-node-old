@@ -2,10 +2,10 @@
 
 ## Properties
 
-| Name           | Type        | Description                                  | Notes      |
-| -------------- | ----------- | -------------------------------------------- | ---------- |
-| **data**       | **Object**  | response that was provided by the server     | [optional] |
-| **status**     | **Integer** | HTTP status code from the server response    |            |
-| **statusText** | **String**  | HTTP status message from the server response | [optional] |
-| **headers**    | **String**  | HTTP headers that the server responded with  |            |
-| **request**    | **String**  | request that generated this response         |            |
+| Name        | Type         | Description                               | Notes      |
+| ----------- | ------------ | ----------------------------------------- | ---------- |
+| **success** | **Boolean**  |                                           | [optional] |
+| **id**      | **String**   |                                           | [optional] |
+| **code**    | **Integer**  | HTTP status code from the server response | [optional] |
+| **message** | **String**   | error message that server returned        | [optional] |
+| **errors**  | **[String]** | errors returned by the server             | [optional] |

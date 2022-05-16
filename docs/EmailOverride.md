@@ -8,4 +8,4 @@
 | **cc**          | [**[EmailRecipient]**](EmailRecipient.md) |             | [optional] |
 | **bcc**         | [**[EmailRecipient]**](EmailRecipient.md) |             | [optional] |
 | **attachments** | [**Attachments**](Attachments.md)         |             | [optional] |
-| **scheduledAt** | **String**                                |             | [optional] |
+| **scheduleAt**  | **String**                                |             | [optional] |

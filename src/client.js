@@ -34,7 +34,7 @@ const DEFAULTS = {
 
 const ClientConfig = (config) => {
   return {
-    basePath: config["basePath"] || DEFAULTS.BASE_URL,
+    basePath: DEFAULTS.BASE_URL,
     authentications: {
       ApiKeyAuth: {
         type: "apiKey",
@@ -181,15 +181,18 @@ const callApi = (
       axiosInstance
         .request(request)
         .then((response) => {
-          resolve(response);
+          resolve(response.data);
         })
         .catch((error) => {
-          var res = error.response;
-          if (res && res.data && res.data.error) {
-            error.message = res.data.error;
+          var response = error.response;
+          if (response && response.data && response.data.error) {
+            error.message = response.data.error;
           }
 
-          reject(error);
+          reject({
+            ...response.data,
+            code: response.status,
+          });
         });
     });
   };
@@ -200,7 +203,7 @@ export const Client = (options = {}) => {
     ...options,
   });
   const requestConfig = {
-    baseURL: config["basePath"] || DEFAULTS.BASE_URL,
+    baseURL: config["basePath"],
     timeout: config["timeout"],
   };
   const instance = axios.create(requestConfig);

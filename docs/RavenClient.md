@@ -1,11 +1,11 @@
-# raven.EventApi
+# raven.RavenClient
 
 All URIs are relative to *https://api.ravenapp.dev*
 
-| Method                               | HTTP request                                | Description                                          |
-| ------------------------------------ | ------------------------------------------- | ---------------------------------------------------- |
-| [**sendBulk**](EventApi.md#sendBulk) | **POST** /v1/apps/{app_id}/events/bulk_send | sends the event in bulk to all the clients specified |
-| [**send**](EventApi.md#send)         | **POST** /v1/apps/{app_id}/events/send      | sends the event to the client specified              |
+| Method                                  | HTTP request                                | Description                                          |
+| --------------------------------------- | ------------------------------------------- | ---------------------------------------------------- |
+| [**sendBulk**](RavenClient.md#sendBulk) | **POST** /v1/apps/{app_id}/events/bulk_send | sends the event in bulk to all the clients specified |
+| [**send**](RavenClient.md#send)         | **POST** /v1/apps/{app_id}/events/send      | sends the event to the client specified              |
 
 <a name="sendBulk"></a>
 
@@ -25,10 +25,6 @@ import { RavenClient } from "raven";
 const config = {
   // Configure API key authorization
   apiKey: "YOUR API KEY",
-  /*
-   //uncomment of you want to override the base path
-  basePath: "YOU BASE PATH"
-  */
 };
 const raven = RavenClient(config);
 
@@ -92,10 +88,6 @@ import { RavenClient } from "raven";
 const config = {
   // Configure API key authorization
   apiKey: "YOUR API KEY",
-  /*
-   //uncomment of you want to override the base path
-  basePath: "YOU BASE PATH"
-  */
 };
 const raven = RavenClient(config);
 

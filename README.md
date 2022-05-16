@@ -74,10 +74,6 @@ import { RavenClient } from "raven";
 const config = {
   // Configure API key authorization
   apiKey: "YOUR API KEY",
-  /*
-   //uncomment of you want to override the base path
-  basePath: "YOU BASE PATH"
-  */
 };
 const raven = RavenClient(config);
 
@@ -106,10 +102,10 @@ raven.sendBulk({ appId, event, opts }).then(
 
 All URIs are relative to *https://api.ravenapp.dev*
 
-| Class       | Method                                    | HTTP request                                | Description                                          |
-| ----------- | ----------------------------------------- | ------------------------------------------- | ---------------------------------------------------- |
-| RavenClient | [**sendBulk**](docs/EventApi.md#sendBulk) | **POST** /v1/apps/{app_id}/events/bulk_send | sends the event in bulk to all the clients specified |
-| RavenClient | [**send**](docs/EventApi.md#send)         | **POST** /v1/apps/{app_id}/events/send      | sends the event to the client specified              |
+| Class       | Method                                       | HTTP request                                | Description                                          |
+| ----------- | -------------------------------------------- | ------------------------------------------- | ---------------------------------------------------- |
+| RavenClient | [**sendBulk**](docs/RavenClient.md#sendBulk) | **POST** /v1/apps/{app_id}/events/bulk_send | sends the event in bulk to all the clients specified |
+| RavenClient | [**send**](docs/RavenClient.md#send)         | **POST** /v1/apps/{app_id}/events/send      | sends the event to the client specified              |
 
 ## Documentation for Models
 
@@ -130,11 +126,3 @@ All URIs are relative to *https://api.ravenapp.dev*
 - [VoiceOverride](docs/VoiceOverride.md)
 - [WebhookOverride](docs/WebhookOverride.md)
 - [WhatsappOverride](docs/WhatsappOverride.md)
-
-## Documentation for Authorization
-
-### ApiKeyAuth
-
-- **Type**: API key
-- **API key parameter name**: Authorization
-- **Location**: HTTP header

@@ -163,14 +163,9 @@ export const testData = {
           },
         },
         output: {
-          response: {
-            status: 200,
-            data: {
-              success: true,
-              id: {
-                type: "string",
-              },
-            },
+          success: true,
+          id: {
+            type: "string",
           },
         },
       },
@@ -205,18 +200,9 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "event not found",
-
-            response: {
-              status: 404,
-              data: {
-                success: false,
-                error: "event not found",
-              },
-            },
-          },
+          success: false,
+          error: "event not found",
+          code: 404,
         },
       },
       {
@@ -249,11 +235,8 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message:
-              "Missing the required parameter 'appId' when calling sendBulkEvent",
-          },
+          message:
+            "Missing the required parameter 'appId' when calling sendBulkEvent",
         },
       },
       {
@@ -287,18 +270,9 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "app not found",
-
-            response: {
-              status: 404,
-              data: {
-                success: false,
-                error: "app not found",
-              },
-            },
-          },
+          success: false,
+          error: "app not found",
+          code: 404,
         },
       },
       {
@@ -324,14 +298,8 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "Request failed with status code 422",
-            response: {
-              status: 422,
-              data: { errors: ["event must not be blank"] },
-            },
-          },
+          code: 422,
+          errors: ["event must not be blank"],
         },
       },
       {
@@ -358,14 +326,8 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "Request failed with status code 400",
-            response: {
-              status: 400,
-              data: { code: 400, message: "Unable to process JSON" },
-            },
-          },
+          code: 400,
+          message: "Unable to process JSON",
         },
       },
       {
@@ -381,14 +343,8 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "Request failed with status code 422",
-            response: {
-              status: 422,
-              data: { errors: ["batch must not be empty"] },
-            },
-          },
+          code: 422,
+          errors: ["batch must not be empty"],
         },
       },
       {
@@ -411,14 +367,8 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "Request failed with status code 422",
-            response: {
-              status: 422,
-              data: { errors: ["batch[0].user must not be null"] },
-            },
-          },
+          code: 422,
+          errors: ["batch[0].user must not be null"],
         },
       },
     ],
@@ -476,14 +426,9 @@ export const testData = {
           },
         },
         output: {
-          response: {
-            status: 200,
-            data: {
-              success: true,
-              id: {
-                type: "string",
-              },
-            },
+          success: true,
+          id: {
+            type: "string",
           },
         },
       },
@@ -514,18 +459,9 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "event not found",
-
-            response: {
-              status: 404,
-              data: {
-                success: false,
-                error: "event not found",
-              },
-            },
-          },
+          success: false,
+          error: "event not found",
+          code: 404,
         },
       },
       {
@@ -555,11 +491,8 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message:
-              "Missing the required parameter 'appId' when calling sendEvent",
-          },
+          message:
+            "Missing the required parameter 'appId' when calling sendEvent",
         },
       },
       {
@@ -590,18 +523,9 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "app not found",
-
-            response: {
-              status: 404,
-              data: {
-                success: false,
-                error: "app not found",
-              },
-            },
-          },
+          success: false,
+          error: "app not found",
+          code: 404,
         },
       },
       {
@@ -623,14 +547,18 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "Request failed with status code 422",
-            response: {
-              status: 422,
-              data: { errors: ["event must not be blank"] },
-            },
-          },
+          code: 422,
+          errors: ["event must not be blank"],
+        },
+      },
+      {
+        name: "event not present",
+        input: {
+          appId: "ead40fc4-34a2-4e7c-abaf-337c00eef79a",
+        },
+        output: {
+          message:
+            "Missing the required parameter 'event' when calling sendEvent",
         },
       },
       {
@@ -654,14 +582,8 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "Request failed with status code 400",
-            response: {
-              status: 400,
-              data: { code: 400, message: "Unable to process JSON" },
-            },
-          },
+          code: 400,
+          message: "Unable to process JSON",
         },
       },
       {
@@ -676,14 +598,8 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "Request failed with status code 422",
-            response: {
-              status: 422,
-              data: { errors: ["user must not be null"] },
-            },
-          },
+          code: 422,
+          errors: ["user must not be null"],
         },
       },
       {
@@ -703,16 +619,8 @@ export const testData = {
           },
         },
         output: {
-          error: {
-            type: "error",
-            message: "Request failed with status code 422",
-            response: {
-              status: 422,
-              data: {
-                errors: ["user must not be null"],
-              },
-            },
-          },
+          code: 422,
+          errors: ["user must not be null"],
         },
       },
     ],
