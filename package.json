@@ -1,7 +1,7 @@
 {
-  "name": "@ravenappdev/raven",
-  "version": "1.0.0",
-  "description": "SDK for Raven Api",
+  "name": "@ravenappdev/raven_api",
+  "version": "1.0.1",
+  "description": "",
   "license": "MIT",
   "main": "src//index.js",
   "repository": "git://github.com/ravenappdev/raven-node.git",

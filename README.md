@@ -3,7 +3,7 @@
 raven - Client SDK for Raven Api
 This is the SDK Documentation of Raven. You can find out more about Raven at [https://ravenapp.dev/](https://ravenapp.dev/).
 
-# Installation (via [npm](https://nodejs.org/))
+# Installation (via [npm](https://www.npmjs.com/package/@ravenappdev/raven))
 
 <!-- ### For [Node.js](https://nodejs.org/)
 
@@ -120,6 +120,7 @@ All URIs are relative to *https://api.ravenapp.dev*
 - [SendEvent](docs/SendEvent.md)
 - [SendEventBulk](docs/SendEventBulk.md)
 - [SlackOverride](docs/SlackOverride.md)
+- [TelegramOverride](docs/TelegramOverride.md)
 - [SlackProfile](docs/SlackProfile.md)
 - [SmsOverride](docs/SmsOverride.md)
 - [User](docs/User.md)
