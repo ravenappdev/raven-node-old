@@ -120,6 +120,7 @@ All URIs are relative to *https://api.ravenapp.dev*
 - [SendEvent](docs/SendEvent.md)
 - [SendEventBulk](docs/SendEventBulk.md)
 - [SlackOverride](docs/SlackOverride.md)
+- [TelegramOverride](docs/TelegramOverride.md)
 - [SlackProfile](docs/SlackProfile.md)
 - [SmsOverride](docs/SmsOverride.md)
 - [User](docs/User.md)
