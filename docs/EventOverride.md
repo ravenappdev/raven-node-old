@@ -11,4 +11,5 @@
 | **webhook**   | [**WebhookOverride**](WebhookOverride.md)   |             | [optional] |
 | **voice**     | [**VoiceOverride**](VoiceOverride.md)       |             | [optional] |
 | **slack**     | [**SlackOverride**](SlackOverride.md)       |             | [optional] |
+| **telegram**  | [**TelegramOverride**](TelegramOverride.md) |             | [optional] |
 | **providers** | [**ProviderOverride**](ProviderOverride.md) |             | [optional] |
