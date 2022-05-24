@@ -3,7 +3,7 @@
 raven - Client SDK for Raven Api
 This is the SDK Documentation of Raven. You can find out more about Raven at [https://ravenapp.dev/](https://ravenapp.dev/).
 
-# Installation (via [npm](https://nodejs.org/))
+# Installation (via [npm](https://www.npmjs.com/package/@ravenappdev/raven))
 
 <!-- ### For [Node.js](https://nodejs.org/)
 
